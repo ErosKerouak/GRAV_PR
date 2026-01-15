@@ -2,12 +2,22 @@
 
 %%%%%%%%%%%%%%%%%%%%
 %
-% 
+%
+
+\usepackage[normalem]{ulem}
+\usepackage{xcolor}
+
+
+
+\newcommand{\added}[1]{\textcolor{blue}{#1}}
+\newcommand{\removed}[1]{\textcolor{red}{\sout{#1}}}
+\newcommand{\change}[2]{\removed{#1} \added{#2}}
+
 \title{DATA INTEGRATION AND UPDATED GRAVITY MAP OF THE STATE OF PARANÁ, SOUTHERN BRAZIL}
 \shorttitle{GRAVITY MAP OF THE STATE OF PARANÁ}
 
 %%%%%%%%%%%%%%%%%%%%
-%    Keywords: list 3 to 5 relevant keywords to the manuscript, separate them by semicolon. Avoid repeating 
+%    Keywords: list 3 to 5 relevant keywords to the manuscript, separate them by semicolon. Avoid repeating
 %    words in the title. Use lower case. Capital letters only when spelling requires.
 \keywords{Fatiando a Terra; Bouguer Disturbance; Paranapanema Block; Paraná Basin; Ponta Grossa Arch}
 %
@@ -15,23 +25,23 @@
 
 
 \begin{abstract}
-%The State of Paraná, Brazil, has been the subject of several geophysical studies, including numerous acquisitions of gravity data. However, existing data are not available as a single database. 
-This article presents a gravity data integration and a regional geophysical overview of the geological framework in the State of Paraná, southern Brazil. For data processing, we used open source computational tools based on Python libraries from the Fatiando a Terra project. Data processing included determining theoretical gravity on the physical surface of the Earth, calculating the gravity disturbance, modeling topographic masses to obtain the complete Bouguer disturbance, data gridding using the equivalent source method, and the application of enhancement techniques. The products obtained were compared with previous geological studies, revealing a robust correlation between our results and the main geological characteristics from literature. Some relatively high values of the Bouguer Disturbance indicate important structural features, such as the Paranapanema Block and the Ponta Grossa Arch. Additionally, enhancement techniques highlighted relevant geological structures, in both the Paraná Basin and the Proterozoic orogenic basement. Using the gravity method and open source tools, this work aims to serve as a reference for future geophysical and geological investigations in the State of Paraná. The gravity maps of the Paraná are a valuable unified database for the scientific community and for future geophysical investigations. These data will be made available in an open repository, facilitating access and encouraging use in subsequent research and practical applications.  
+
+This article presents a gravity data integration and a regional geophysical overview of the geological framework in the State of Paraná, southern Brazil. For data processing, we used \change{open source}{open-source} computational tools based on Python libraries from the Fatiando a Terra \change{project}{Project}. Data processing included determining theoretical gravity on the physical surface of the Earth, calculating the \change{gravity disturbance}{Gravity Disturbance}, modeling topographic masses to obtain the complete Bouguer disturbance, data gridding using the equivalent source method, and the application of enhancement techniques. The products obtained were compared with previous geological studies, revealing a robust correlation between our results and the main geological characteristics from literature. Some relatively high values of the Bouguer Disturbance indicate important structural features, such as the Paranapanema Block and the Ponta Grossa Arch. Additionally, enhancement techniques highlighted relevant geological structures, in both the Paraná Basin and the Proterozoic orogenic basement. Using the gravity method and \change{open source}{open-source} tools, this work aims to serve as a reference for future geophysical and geological investigations in the State of Paraná. The gravity maps of the Paraná are a valuable unified database for the scientific community and for future geophysical investigations. These data will be made available in an open repository, facilitating access and encouraging use in subsequent research and practical applications.
 \end{abstract}
 
 
 \section*{INTRODUCTION}
 
-In this work, various available gravimetric data were integrated, revealing the main first-order structures of the geological framework of the State of Paraná. The focus was on the integration and analysis of the available gravimetric data, using internally developed Python codes based on libraries and techniques published by the Fatiando a Terra project \citep{uieda-proc-scipy-2013}. These algorithms are available on the GitHub repository (\href{https://github.com/ErosKerouak/GRAV_PR}{https://github.com/ErosKerouak/GRAV\_PR}).
+In this work, various available gravimetric data were integrated, revealing the main first-order structures of the geological framework of the State of Paraná\added{, southern Brazil}. The focus was on the integration and analysis of the available gravimetric data, using internally developed Python codes based on libraries and techniques published by the Fatiando a Terra \change{project}{Project} \citep{uieda-proc-scipy-2013}. These algorithms are available on the GitHub repository (\href{https://github.com/ErosKerouak/GRAV_PR}{https://github.com/ErosKerouak/GRAV\_PR}).
 
-Initially, the Gravity Disturbance was used as the raw gravimetric anomaly instead of the classic Free-Air Anomaly. The chosen gravimetric anomaly benefits from using ellipsoidal heights derived from GNSS records. This method avoids using orthometric heights, which are influenced by the selected geoid model \citep{segawa1984gravity}. The Bouguer correction, traditionally applied to free-air anomalies, was then applied to the gravity disturbance, resulting in the so-called Bouguer Disturbance. As defined by \cite{segawa1984gravity}, this is an adaptation of the traditional concept of Bouguer anomaly for gravity disturbances instead of free-air anomalies, providing a more accurate reading of the gravitational field, less affected by geoid undulations and more directly related to subsurface density variations. Consequently, the Bouguer Disturbance proves to be particularly effective for geophysical and geological studies aimed at understanding the Earth's crust and upper mantle structure \citep{segawa1984gravity}.
+Initially, the Gravity Disturbance was used as the raw gravimetric anomaly instead of the classic Free-Air Anomaly. The chosen gravimetric anomaly benefits from using ellipsoidal heights derived from GNSS records. This method avoids using orthometric heights, which are influenced by the selected geoid model \citep{segawa1984gravity}. The Bouguer correction, traditionally applied to free-air anomalies, was then applied to the \change{gravity disturbance}{Gravity Disturbance}, resulting in the so-called Bouguer Disturbance. As defined by \cite{segawa1984gravity}, this is an adaptation of the traditional concept of Bouguer anomaly for \change{gravity disturbance}{Gravity Disturbance}s instead of free-air anomalies, providing a more accurate reading of the gravitational field, less affected by geoid undulations and more directly related to subsurface density variations. Consequently, the Bouguer Disturbance proves to be particularly effective for geophysical and geological studies aimed at understanding the Earth's crust and upper mantle structure \citep{segawa1984gravity}.
 
-A second optimized technique was applied to the interpolation of the data. The equivalent source method \citep{dampney1969equivalent, cooper2000gridding, Soler2019} was employed before applying enhancement filters, such as the Total Horizontal Gradient (THDR), \cite{cordell1985mapping} and the Tilt Derivative (TDR), \cite{miller1994potential}.
+A second optimized technique was applied to the interpolation of the data. The equivalent source method \citep{dampney1969equivalent, cooper2000gridding, Soler2019} was employed before applying enhancement filters, such as the Total Horizontal \change{Gradient}{Derivative} (THDR), \cite{cordell1985mapping} and the Tilt Derivative (TDR), \cite{miller1994potential}.
 
 Finally, to demonstrate the improvement in the compilation of ground gravimetric data in the State of Paraná and the implementation of the new interpolation and processing techniques, the maps from this work were compared with those from \cite{Zanon2022}.
 
 
-\textbf{The objective of this work was to integrate the available ground gravimetric data from various public, private, and academic platforms to obtain an integrated and optimized view of the gravitational features in Paraná, improving the relationship between different sources by constructing a single homogenized database, made publicly available in a repository for future use by the scientific community and industry and serve as a reference for future geophysical and geological investigations in the State of Paraná. To achieve this, ground gravimetric data from different sources were compiled, and Modern techniques for analyzing gravimetric data were adopted.} 
+The objective of this work was to integrate the available ground gravimetric data from various public, private, and academic platforms to obtain an integrated and optimized view of the gravitational features in Paraná, improving the relationship \change{between}{among} different sources by constructing a single homogenized database, made publicly available in a repository for future use by the scientific community and industry and serve as a reference for future geophysical and geological investigations in the State of Paraná. To achieve this, ground gravimetric data from different sources were compiled, and Modern techniques for analyzing gravimetric data were adopted.
 
 \section{GEOLOGICAL CONTEXT}
 
@@ -39,154 +49,58 @@ The oldest geological records in the State of Paraná are magmatic and metamorph
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.75]{Classe_submit/Figures/mapa_geo_jan2025.png}
+	\includegraphics[scale=0.75]{./Figures/mapa_geo_jan2025.png}
 	\caption{Simplified Geological Map of the State of Paraná, adapted from \cite{besser2021mapa}}
 	\label{fig:Geological_Map}
 \end{figure}
 
-The Paraná Shield is part of the Ribeira Orogenic System, known as the Southern Ribeira Belt, formed during the agglutination of Western Gondwana \citep{heilbron2008correlation}. This unit comprises four tectonic compartments: the Apiaí, Curitiba, Luís Alves, and Paranaguá terrains \citep{siga1995dominios, heilbron2008correlation}.
+The Paraná Shield is part of the Ribeira Orogenic System, known as the Southern Ribeira Belt, formed during the agglutination of Western Gondwana \citep{heilbron2008correlation}.
+\change{}{}
+This unit comprises four tectonic compartments: the \change{Apiaí}{Apiai}, Curitiba, \change{Luís}{Luis} Alves, and \change{Paranaguá}{Paranagua} \change{terrains}{terranes} \citep{siga1995dominios, heilbron2008correlation}.
 
-The Paraná Basin is an intracratonic basin \citep{Almeida1981brazilian} that spans the Second and Third Paranaense Plateaus, covering most of the State of Paraná and extending into other regions of Brazil, Paraguay, Argentina, and Uruguay. It has been filled with sediments across various geological periods, mainly from the Ordovician to the Cretaceous, including siliciclastic sediments, carbonates, and igneous rocks \citep{Milani2007petrobras}. 
+
+The Paraná Basin is an intracratonic basin \citep{Almeida1981brazilian} that spans the Second and Third Paranaense Plateaus, covering most of the State of Paraná and extending into other regions of Brazil, Paraguay, Argentina, and Uruguay. It has been filled with sediments across various geological periods, mainly from the Ordovician to the Cretaceous, including siliciclastic sediments, carbonates, and igneous rocks \citep{Milani2007petrobras}.
 
 
 The basin's evolution involved multiple stages of erosion and deposition, separated by regional unconformities. The stratigraphy of the basin is marked by six supersequences: Rio Ivaí (Ordovician-Silurian), Paraná (Devonian), Gondwana I (Carboniferous-Early Triassic), Gondwana II (Mid to Late Triassic), Gondwana III (Late Jurassic-Early Cretaceous), and Bauru (Late Cretaceous) \citep{Milani2007petrobras}. Deposited during the Late Cretaceous, the Bauru supersequence marks the final stage of sedimentary infill of the Paraná Basin, manifesting as a set of siliciclastic rocks accumulated in the so-called Bauru Basin \citep{Milani2007petrobras}.
 
-In the context of structural geology, Figure \ref{fig:Structures} presents the main structural lineaments of the State of Paraná, highlighting shear zones, extensional faults, and structures with undefined kinematics. Notable features include the Ponta Grossa Arch, the Ponta Grossa dike swarms, and the Paranapanema Block.
+In the context of structural geology, Figure \ref{fig:Structures} presents the main structural lineaments of the State of Paraná, highlighting shear zones, extensional faults, and structures with undefined kinematics. Notable features include the Ponta Grossa Arch, the Ponta Grossa \change{dike swarms}{Dike Swarm} , and the Paranapanema Block.
 
-The Ponta Grossa Arch is an elevated structure that extends northwestward, with associated structural lineaments and swarms of Early Cretaceous diabase dikes. It is characterized as a broad elevated structure stretching northwest from the coast to the Paraná Basin. This structural formation is notable for the presence of five structural-magnetic lineaments, each with surface extensions of at least 600 km, and associated anomalies covering zones with thicknesses ranging from 20 to 100 km \citep{portela2003estimativas}. 
+The Ponta Grossa Arch is an elevated structure that extends northwestward, with associated structural lineaments and swarms of Early Cretaceous diabase dikes. It is characterized as a broad elevated structure stretching northwest from the coast to the Paraná Basin. This structural formation is notable for the presence of five structural-magnetic lineaments, each with surface extensions of at least 600 km, and associated anomalies covering zones with thicknesses ranging from 20 to 100 km \citep{portela2003estimativas}.
 
-These lineaments host dense clusters of Early Cretaceous diabase dikes \citep{renne1992age, turner1994magmatism}. The Ponta Grossa dike swarm shows a subtle displacement toward the southwestern flank of the Ponta Grossa Arch \citep{souzafilho2022}. 
+These lineaments host dense clusters of Early Cretaceous diabase dikes \citep{renne1992age, turner1994magmatism}. The Ponta Grossa dike swarm shows a subtle displacement toward the southwestern flank of the Ponta Grossa Arch \citep{souzafilho2022}.
 
-The Ponta Grossa Arch represents a crustal uplift and thinning, extending from the coast to the edge of the Paraná Basin. Conversely, the Ponta Grossa Dike Swarm is a narrow linear belt that crosses the Paraná Basin, stretching from the coast nearly to the Brazil-Paraguay border \citep{souzafilho2022}. 
+The Ponta Grossa Arch represents a crustal uplift and thinning, extending from the coast to the edge of the Paraná Basin. Conversely, the Ponta Grossa Dike Swarm is a narrow linear belt that crosses the Paraná Basin, stretching from the coast nearly to the Brazil-Paraguay border \citep{souzafilho2022}.
 
 
 Gravimetric studies have defined the existence of a distinct continental block, called the Paranapanema Block, considered a cratonic block located beneath the Paraná Basin. It is characterized by high density and gravitational anomalies, possibly due to mantle refertilization \citep{mantovani2005delimitation, chaves2016density}.
 
-% The Apiaí Terrain hosts Mesoproterozoic to Neoproterozoic metasedimentary geological sequences, in addition to Paleoproterozoic basement cores and Neoproterozoic granitic complexes \citep{besser2021mapa}. It also includes the transitional Castro and Camarinha basins, with the Camarinha Formation considered a foreland basin and the Castro Formation a distensional basin \citep{basei1998estratigrafia, heilbron2004}.
 
-% The Curitiba Terrain is primarily composed of orthogneisses from the Atuba Complex, originating in the Paleoproterozoic \citep{siga1995dominios, sato2003atuba}, and includes deformed granitoids of the Setuva Complex, as well as metasedimentary sequences such as Capiru and Turvo-Cajati, in addition to Ediacaran-aged granitic intrusions \citep{heilbron2008correlation, campanha2016mesoproterozoic, leandro2016caracterizaccao, santos2021}.
-
-% The Luís Alves Terrain consists of the Santa Catarina Granulitic Complex, primarily composed of granulitic gneisses, migmatites, and granites, which originated in the Archean and Paleoproterozoic \citep{hartmann2000advances, basei2009evolution}. It also includes the Neoproterozoic Rio Piên Granitic Suite and granites from the Graciosa Intrusive Suite \citep{faleiros2011ediacaran, vilalva2019insights}. The Guaratubinha Basin developed over this terrain, possibly as a post-collisional extensional basin during the Ediacaran Period \citep{basei1998estratigrafia, quiroz2019petrography}.
-
-% The Paranaguá Terrain is dominated by a granitic complex that includes the Morro Inglês, Rio do Poço, and Canavieiras-Estrela suites \citep{cury2009geologia}. These granites primarily intrude gneissic and gneissic-migmatitic rocks that are part of the São Francisco do Sul Complex, along with metasedimentary rocks from the Rio das Cobras Sequence \citep{cury2009geologia}.
-
-% \subsection{Paraná and Bauru Basins}
-
-
-% established over the basaltic substrate of the Serra Geral Formation \citep{Milani2007petrobras}. This supersequence is distinguished by a continental depositional regime, developed under climatic conditions ranging from semi-arid to desert \citep{Milani2007petrobras}. Comprising the chrono-correlative Caiuá and Bauru groups, the supersequence exhibits significant depositional diversity. The Caiuá Group is characterized by extensive aeolian dune deposits, representative of the interior of the Caiuá Desert. In parallel, the Bauru Group encompasses deposits formed under a semi-arid climate, including alluvial fans, sand sheets, and intermittent river systems \citep{Milani2007petrobras}.
-
-% The Rio Ivaí supersequence, located directly above the syncline's basement, comprises the Alto Garças, Iapó, and Vila Maria Formations \citep{Milani2007petrobras}. This supersequence displays a variety of deposits, including quartzose sandstones, diamictites with clasts of various natures, and fossiliferous pelites \citep{Milani2007petrobras}. This set of formations illustrates the first transgressive-regressive cycle of cratonic sedimentation in the Paraná Basin, extending from the Ordovician-Silurian to the Devonian. It is characterized by a predominance of marine deposition, evidenced by the transgressive phase that begins at the base of the unit and reaches its peak in the pelites of the Vila Maria Formation, marking the maximum flooding point of this sedimentary cycle \citep{Milani2007petrobras}.
-
-% The Paraná supersequence, belonging to the Devonian of the Paraná Basin, is notable for a series of strata that delineate a clear transgressive-regressive cycle. Comprising primarily the Paraná Group, which includes the Furnas and Ponta Grossa Formations, this supersequence reveals sedimentary events that transition from predominantly sandy deposits to a distinctly pelitic sequence \citep{Milani2007petrobras}. The Furnas Formation, characterized by quartzose sandstones, indicates depositional environments ranging from fluvial to shallow marine, with the presence of trace fossils supporting the notion of shallow marine deposition in parts of its formation \citep{Milani2007petrobras}. Through a smooth transition, the Ponta Grossa Formation overlies the Furnas Formation, recording a significant marine incursion, marked by an abundant fauna of marine invertebrates and a layer of black shales, signaling anoxic conditions \citep{Milani2007petrobras}.
-
-% The Gondwana I supersequence, dating from the Carboniferous to the Early Triassic, represents a transgressive-regressive cycle that reflects depositional conditions from the Late Carboniferous to the early Mesozoic \citep{Milani2007petrobras}. Starting with the glacial sedimentation of the Itararé Group and Aquidauana Formation, characterized by diamictites and deposits related to deglaciation, the sequence evolves into a post-glacial sedimentation phase marked by the Permian transgression, documented in the deposits of the Guatá Group and its equivalents, including the coal-rich Rio Bonito Formation with evidence of marine influence \citep{Milani2007petrobras}. This transgressive phase culminates with the deposition of the hypersaline strata of the Irati Formation. The sequence concludes with a regressive trend evidenced by the continental sedimentation of the Passa Dois and Pirambóia Groups, reflecting the filling of the basin and the transition to drier and more continental environments \citep{Milani2007petrobras}. 
-
-% The Gondwana II supersequence encompasses the Triassic of the Paraná Basin and is marked by fluvial and lacustrine sedimentary deposits, reflecting a complex interplay between tectonic and sedimentary processes that resulted in the creation of varied depositional environments during the Triassic \citep{Milani2007petrobras}. The beginning of this supersequence is characterized by an abrupt contact, where pelitic deposits, representative of a lacustrine environment, directly overlie the sandstones of the preceding sequence. This indicates rapid subsidence of the substrate and the subsequent formation of lacustrine basins \citep{Milani2007petrobras}. Later, these lacustrine environments were filled by progradational sandy sediments, ending with the deposition of the sandstones of the Tacuarembó Formation in Uruguay and the Botucatu Formation in Brazil. Such a succession signals a shift to predominantly fluvial and aeolian depositional patterns \citep{Milani2007petrobras}.
-
-% The Gondwana III supersequence, spanning the Late Jurassic to Early Cretaceous period, signals a shift to a predominantly continental depositional regime, influenced by arid to semi-arid climates \citep{Milani2007petrobras}. It is characterized by the dominance of vast aeolian dune fields, evidenced by the sandstones of the Botucatu Formation, and by the subsequent basaltic flows of the Serra Geral Formation \citep{Milani2007petrobras}. The fine to medium, well-sorted sandstones of the Botucatu Formation indicate the presence of extensive deserts and the basaltic cover represented by the Serra Geral Formation stands out as the climax of magmatism in the basin, constituting one of the largest global volcanic provinces \citep{Milani2007petrobras}.
-
-
-
-% \subsection{Structural Geology}
-
-
-
-% In Figure \ref{fig:Structures}, thirty of the most significant structural lineaments of the State of Paraná are represented, whose traces were obtained from \citep{besser2021mapa}. Among these, fifteen are shear zones, with seven classified as sinistral strike-slip, four as dextral strike-slip, and four as compressional. Additionally, there are fourteen structures with undefined kinematics, alongside an extensional fault. The traces of the major structures: the Paranapanema Block, the Ponta Grossa Arch, and the Ponta Grossa Dike Swarm, were outlined based on the gravimetric maps produced in this work and were also plotted in Figure \ref{fig:Structures}.
-
-
-% The seven sinistral strike-slip shear zones include: the Cubatãozinho Shear Zone (CSZ), the Faxinal Shear Zone (FSZ), the Itapirapuã Shear Zone (ISZ), the Morretes Shear Zone (MSZ), the Morro Agudo Shear Zone (MASZ), the Palmital Shear Zone (PSZ), and the Serra do Azeite Shear Zone (SASZ). The four dextral strike-slip shear zones comprise: the Almirante Tamandaré Shear Zone (ATSZ), the Lancinha Shear Zone (LSZ), the Morro Grande Shear Zone (MGSZ), and the Ribeira Lineament (RL). The four compressional shear zones are the Alexandra Shear Zone (ASZ), the Guaratuba Shear Zone (GSZ), the Piên-Tijucas Shear Zone (PTSZ), and the Serra Negra Shear Zone (SNSZ). The fourteen structures without defined kinematics include: the Apucarana Alignment (AA), the Caçador Fault Zone (CFZ), the Cândido de Abreu/Campo Mourão Fault Zone (CACMFZ), the Guapiara Fault Zone (GFZ), the Guaxupé Fault (GF), the Jacutinga Fault (JF), the Lancinha-Cubatão Fault Zone (LCFZ), the Mandirituba-Piraquara Lineament (MPL), the Maringá Lineament (ML), the Rio Alonzo Fault (RAF), the Rio Piquiri Lineament (RPL), the São Jerônimo-Curiúva Lineament (SJCL), the São Sebastião Lineament (SSL), and the Taxaquara Fault (TF). The extensional fault identified is the Castro Fault (FC).
-
-
-% The Paranaguá Terrain is bounded to the south by the shear zones PSZ and ASZ, and to the north by the thrust zones SNSZ and Icapara, the latter located in the state of São Paulo. The transcurrent shear zones PSZ and ASZ exhibit a sinistral movement with an oblique component \citep{cury2009geologia}. The shear zones SNSZ and Icapara indicate a broad area of collision, predominantly in the north-northwest direction, also with oblique components \citep{cury2009geologia}. In the interior part of the Paranaguá Terrain, the GSZ, with compressional kinematics, and the CSZ, with sinistral kinematics, occur \citep{besser2021mapa}. The division between the Curitiba and Luís Alves terrains is defined by the MPL in its southern half, and by the SASZ in the northern half. The contact between the Curitiba and Luís Alves terrains includes relics of an oceanic suture in the Rio Piên Suite. This suture zone is characterized by rocks associated with a paleo-magmatic arc about 610 million years old, which are considered evidence of subduction in the northwest direction \citep{basei2000dom, santos2021}. Within the Luís Alves Terrain, we find the MSZ, with sinistral kinematics, and the PTSZ, with compressional kinematics. The PTSZ corresponds to the contact of the Rio Piên Suite with the Santa Catarina Granulitic Complex. In the Curitiba Terrain, the FSZ, with sinistral kinematics, and the dextral shear zones: MGSZ, and ATSZ occur \citep{besser2021mapa}. In the Apiaí Terrain, the CF marks the boundary of the Castro Basin, and the ISZ corresponds to the contact of the Três Córregos Granite Suite with the Itaiacoca Group. The Lageado Group has its northeast half bounded by the RL, a structure with dextral kinematics, while its southwest half is bounded by the MASZ, with sinistral kinematics. A structural framework for the Paraná Basin was proposed by \citep{zalan1987tectonica}, in which 37 lineaments were outlined, 11 of which intersect the Paraná region, with six following a NW orientation and five a NE orientation. The 6 NW structures are represented in Figure \ref{fig:Structures} as: RAF, ML, RPL, SJCL, CFZ, CACMFZ. The 5 NE structures correspond to: GF, JF, TF, LCFZ, and SSL.
-
-%  In the overall context, the tectonic expression of the contact between the Curitiba and Apiaí terrains, juxtaposed by the LSZ/LCFZ, is notable. This fault zone can be extended up to Rio de Janeiro. Not only the Lancinha Fault, but the entire basement of the Ribeira Orogen underwent regional transcurrent movement between the Neoproterozoic and Cambrian \citep{faleiros2022strain}, which reinforced the NE-SW trending heterogeneities of the crystalline basement, and mobilized or destroyed much of the records of the tectonic collision between these continental blocks. 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.75]{Classe_submit/Figures/mapa_estru_30jan2025.png}
+	\includegraphics[scale=0.75]{./Figures/mapa_estru_30jan2025.png}
 	\caption{Main Geological Structures in the State of Paraná, adapted from \cite{besser2021mapa}}
 	\label{fig:Structures}
 \end{figure}
 
-%  \subsubsection{The Ponta Grossa Arch}
 
-% The Ponta Grossa Arch is characterized as a broad elevated structure that extends in a northwest direction from the coastline into the Paraná Basin. This structural formation is notable for the presence of five structural-magnetic alignments, whose surface extensions are no less than 600 km, and their associated anomalies cover zones ranging from 20 to 100 km thick \citep{portela2003estimativas}. It is bounded by the GFZ to the northeast \citep{ferreira1981contribuiccao} and by the RPL to the southwest. Between these boundary structures, there are others that also form part of the Arch, all with the same NW orientation, including the CACMFZ, ML, and AA. The central core of the arch is marked by the SJCL and RAF lineaments \citep{ferreira1982integraccao}.
-
-% These lineaments host dense clusters of Lower Cretaceous diabase dikes \citep{renne1992age, turner1994magmatism}. The Ponta Grossa Dike Swarm shows a subtle shift toward the SW flank of the Ponta Grossa Arch \citep{souzafilho2022}. These dikes are predominantly oriented NW-SE, but there are also some in E-W and NE-SW directions. The NE-SW swarm dikes have sub-vertical dips and surface extensions of up to 100 km. The average thickness of the dikes varies, typically between 20 and 50 meters, averaging 1.5 dikes per kilometer, and occasionally up to 4 dikes per kilometer \citep{marini1967intrusivas, portela2003estimativas}. Besides the presence of the dikes, these lineaments have also been associated with the intrusion of alkaline rocks \citep{ferreira1979comportamento, Almeida1983relaccoes}.
-
-% The Ponta Grossa Arch represents a folding and thinning of the crust, extending from the coast to the beginning of the Paraná Basin. On the other hand, the Ponta Grossa Dike Swarm is a narrow linear strip that crosses the Paraná Basin, running from the coastline almost to the border of Brazil with Paraguay \citep{souzafilho2022}.
-
-% \subsubsection{The Paranapanema Block}
-% The basement of the Central-North Paraná Basin is totally hidden by Paleozoic and Mesozoic sedimentary packages of Paraná and Caiuá-Bauru basins.  Early studies suggested the occurrence of a resistant block under Paraná Basin, which may have interacted with the surrounding orogenic processes in the Brazilian Orogenic Cycle \citep{fyfe1974ancient, cordani1984estudo}. Later on, gravimetric studies defined the existence of a distinguishing continental block named as Paranapanema Block \citep{mantovani2005delimitation}, which was considered as a cratonic block. Such block seems to be surrounded by faults and suture zones, likely related to the geological contact with Tocantins and Mantiqueira orogenic provinces \citep{mantovani2005delimitation, pinto2019arcaboucco}.
-
-% The lateral homogeneity of this block cannot be proved by direct methods, due to the large and thick sedimentary cover. However, other researches pointed out the relative tectonic instability of this area, which favors the interpretation of minor juxtaposed blocks, instead of an unique terrane \citep{milani2020influencia, souzafilho2022}. Other geophysical studies have shown the possibility of lithospheric heterogeneities in the same area (e.g., tectonic collage in \citep{padilha2015imaging}; segmented blocks in \citep{pinto2019arcaboucco}). Despite of that, the Paranapanema Block composes a distinct crustal area with notable high gravity anomaly \citep{mantovani2005delimitation, chaves2016density}. Interpretations from \citep{chaves2016density} suggeted that high density of Paranapanema Block can be attributed to mantle refertilization.
-
-
-%\section{Theoretical Revision}
-
-%\subsection{Normal Gravitational Potential}
-%At a first approximation, Earth is a sphere; at a second approximation, it becomes a revolution ellipsoid \citep{hofmann2006physical}. The reference ellipsoid is a simplified geometric representation of the Earth's shape, having the same angular velocity and mass as the real Earth, considering the masses of the oceans and atmosphere \citep{Blakely1996, gemael2019}. The total gravitational potential of the ellipsoid, \( U \), known as the normal gravitational potential, is the sum of its attraction potential \( U_g \) and the rotational potential \( U_r \) \citep{Blakely1996, gemael2019},
-
-%\begin{equation}\label{Equação o potencial total do esferoide}
-%    U = U_g + U_r   \text{.}
-%\end{equation}
-
-%The gravitational field of the ellipsoid is a fundamentally theoretical concept from a practical viewpoint, as it is easy to handle mathematically, and the discrepancies between the real gravitational field and the theoretical or normal field are small \citep{hofmann2006physical}. Although an ellipsoid has various geometric and physical parameters, it can be completely defined by four independent fundamental parameters: the geocentric gravitational constant \(GM\), the semi-major axis \(a\), the flattening \(f\), and the angular velocity \(\omega\) \citep{Blakely1996}.
-
-%\subsubsection{Theoretical gravity}\label{subsubsec:gama}
-%The centrifugal inertial force generated by the Earth's rotation movement reaches its maximum at the equator, due to the higher angular velocity, and decreases inversely proportional to latitude, becoming null at the poles. As a result of this phenomenon, the Earth's gravitational potential near its surface varies with latitude \( \phi \). Using the parameters of a reference ellipsoid, it is possible to estimate a theoretical gravity \( \gamma \) for any latitude \( \phi \). The equations used to calculate theoretical gravity, based on Clairaut's Theorem, are generally expressed as:
-
-%\begin{equation}
-%    \gamma = \gamma_a (1 - \beta \sin^2 \phi + \beta_1 \sin^2 2 \phi + \text{higher order terms})
-%\end{equation}
-
-%\noindent where \( \gamma \) and \( \gamma_a \) represent the normal gravity, respectively, at latitude \( \phi \) and at the equator \citep{gemael2019}. The coefficients \( \beta \) and \( \beta_1 \) depend exclusively on the parameters of the ellipsoid \citep{Blakely1996}.
-
-%This equation is a series expansion, but it is also possible to use closed-form expressions for theoretical gravity \citep{li2001ellipsoid}. In the case of \( \gamma \) on the surface of the ellipsoid, the Somigliana Formula can be used \citep{Blakely1996, li2001ellipsoid, hofmann2006physical}. Similarly, the theoretical gravity at any height \( h \) relative to the ellipsoid can also be calculated by a closed formula, for example the Lankshmanan and LiGötze Formula \citep{lakshmanan1991generalized, gotze1996topography, li2001ellipsoid}.
-
-%\subsection{Anomalous Gravitational Potential}
-%While the reference ellipsoid is conceived as an idealized equipotential surface of a homogeneous Earth, the true equipotential surface, which best corresponds to the undisturbed ocean level, is called the geoid \citep{Grafarend1993Geoid, Blakely1996, gemael2019}, a concept originally conceived by \citep{gauss1828bestimmung} and later named by \citep{listing1872unsere}. The small difference between the actual gravity potential, \( W \), and the normal gravity potential, \( U \), corresponds to what is called the anomalous potential, \( T \). Considering that the rotational potential, \( U_r \), remains constant for both the reference ellipsoid and the actual Earth, its influence is neutralized in \( T \) \citep{gemael2019, hofmann2006physical},
-
-%\begin{align}
-%    W &= U + T \nonumber \\ 
-%    T &= W - U \text{.}
-%\end{align}
-
-%\subsubsection{Gravity Anomaly and Gravity Disturbance}
-%The calculation of theoretical gravity at height \(h\) (as indicated in section \ref{subsubsec:gama}) allows for the determination of the gravity disturbance on the Earth's surface. Since \(g_{\text{obs}}\) and \(\gamma_h\) are over the same point \(P_{\text{obs}}\), it is simply a matter of calculating the difference between the observed gravity \(g_{\text{obs}}\) and \(\gamma_h\) at each observation point \(P_{\text{obs}}\), with both gravities in a tide-free regime,
-
-
-
-%\subsubsection{Bouguer Anomaly and Bouguer Disturbance}\label{subsubsec:bouguer}
-
-%Assuming that the area around the observation point \(P_{\text{obs}}\) is completely flat and horizontal, the mass between the geoid level and the observation point would form a homogeneous, infinitely extensive plate, with constant density \(\rho\) and thickness equal to the height \(h\) of the observation point. This hypothetical flat, horizontal, homogeneous, and infinite plate is called the Bouguer Plate, which can be considered a cylinder with thickness \(h\), with the radius \(r\) tending towards infinity \(r \rightarrow \infty\) \citep{hofmann2006physical}. The gravitational attraction \(C_b\) that the Bouguer Plate would exert at the point \(P_{\text{obs}}\) is given by \citep{hofmann2006physical}:
-
-%\begin{equation}
- %   C_b = 2  \pi  G  \rho  h \text{.}
-%\end{equation}
-
-%\noindent The Simple Bouguer Disturbance \(\delta g_b\) is obtained by subtracting the value of the attraction of the Bouguer Plate \(C_b\) from the value of the gravity disturbance \(\delta g\),
-
-%\begin{align}
-%    \delta g_b &= g_{obs} - \gamma_h - C_b \nonumber \\
-%                 &= \delta g - C_b \text{.}
-%\end{align}
-
-%Valleys and elevations around the observation point are not considered in the Bouguer Plate, but they influence the observed gravity. For this reason, it is advisable to refine the Bouguer disturbance by taking into account the discrepancy between the actual topography and the Bouguer Plate, a process called topographic correction \citep{hofmann2006physical}. The result is the complet Bouguer disturbance. The Bouguer reduction and the corresponding anomalies or Bouguer disturbances are called complet or simple, depending on whether the topographic correction has been applied or not \citep{hofmann2006physical}.
 
 
 
 \section{MATERIALS AND METHOD}
 \subsection{Gravity Data}
 
-The data used in this study (Figure \ref{fig:dados}) were collected by a wide range of institutions, namely Petróleo Brasileiro S/A (Petrobras), Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (National Agency of Petroleum, Natural Gas and Biofuels, ANP), Instituto de Astronomia, Geofísica e Ciências Atmosféricas da Universidade de São Paulo (Institute of Astronomy, Geophysics and Atmospheric Sciences of the University of São Paulo, IAG USP), Instituto Brasileiro de Geografia e Estatística (Brazilian Institute of Geography and Statistics, IBGE), Observatório Nacional (National Observatory, ON), Serviço Geológico do Brasil (Geological Survey of Brazil, SGB/CPRM), and Universidade Federal do Paraná (Federal University of Paraná, UFPR). Most of this data was included in the compilation of the Banco Nacional de Dados Gravimétricos (National Gravimetric Data Bank, BNDG). It is noteworthy that many of these data are referenced to the Rede Gravimétrica Fundamental Brasileira (Brazilian Fundamental Gravimetric Network, RGFB), whose administration is carried out by the Observatório Nacional, with the gravimetric datum being International Gravity Standardization Net 1971 (IGSN-71), \citep{Subiza2001, luz2008estrategias}.
+The data used in this study (Figure \ref{fig:dados}) were collected by a wide range of institutions, namely Petróleo Brasileiro S/A (Petrobras), Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (National Agency of Petroleum, Natural Gas and Biofuels, ANP), Instituto de Astronomia, Geofísica e Ciências Atmosféricas da Universidade de São Paulo (Institute of Astronomy, Geophysics and Atmospheric Sciences of the University of São Paulo, IAG USP), Instituto Brasileiro de Geografia e Estatística (Brazilian Institute of Geography and Statistics, IBGE), Observatório Nacional (National Observatory, ON), Serviço Geológico do Brasil (Geological Survey of Brazil, SGB/CPRM), and Universidade Federal do Paraná (Federal University of Paraná, UFPR).
+\added{Figure~\ref{fig:dados} shows not only the spatial distribution of the ground gravity data, but also the quantitative contribution of each institution to the dataset, expressed as the number of data points provided.}
+Most of this data was included in the compilation of the Banco Nacional de Dados Gravimétricos (National Gravimetric Data Bank, BNDG). It is noteworthy that many of these data are referenced to the Rede Gravimétrica Fundamental Brasileira (Brazilian Fundamental Gravimetric Network, RGFB), whose administration is carried out by the Observatório Nacional, with the gravimetric datum being International Gravity Standardization Net 1971 (IGSN-71), \citep{Subiza2001, luz2008estrategias}.
 
 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.75]{Classe_submit/Figures/mapa_dados_jan2025.png}
-	\caption{Ground Gravity data in State of Paraná and Surroundings.}
+	\includegraphics[scale=0.75]{./Figures/mapa_dados_jan2025.png}
+	\caption{Ground Gravity data in State of Paraná and Surroundings. \added{The spatial distribution and quantitative contribution of each institution, expressed as the number of gravity data points provided, are shown.}}
 	\label{fig:dados}
 \end{figure}
 
@@ -198,21 +112,21 @@ Considering \(P\) and \(Q\) as points located respectively on the surfaces of th
     \Delta g = g_P - \gamma_Q  \text{.}
 \end{equation}
 
-A comparison can be made between the magnitudes of \(g_P\) and \(\gamma_P\), that is, between the magnitude of the actual gravity vector and the magnitude of the theoretical gravity vector, both at the same point \(P\). This comparison results in the calculation of the gravity disturbance, \(\delta g\), expressed by the Equation \citep{hofmann2006physical}:
+A comparison can be made between the magnitudes of \(g_P\) and \(\gamma_P\), that is, between the magnitude of the actual gravity vector and the magnitude of the theoretical gravity vector, both at the same point \(P\). This comparison results in the calculation of the \change{gravity disturbance}{Gravity Disturbance}, \(\delta g\), expressed by the Equation \citep{hofmann2006physical}:
 
 \begin{equation}\label{eq:gravit_d2}
     \delta g = g_P - \gamma_P \text{.}
 \end{equation}
 
-In this study, the theoretical gravity was obtained using the Boule library \citep{Boule}, which employs the Lakshmanan and Li-Götze Formula \citep{lakshmanan1991generalized, gotze1996topography, li2001ellipsoid}. Since this formula calculates the theoretical gravity at any height \(h\) relative to the ellipsoid, the theoretical gravity value \(\gamma_h\) was directly compared with the observed gravity \(g_{\text{obs}}\), yielding the gravity disturbance \(\delta g\) as per Equation \ref{eq:gravit_d2}.
+In this study, the theoretical gravity was obtained using the Boule library \citep{Boule}, which employs the Lakshmanan and Li-Götze Formula \citep{lakshmanan1991generalized, gotze1996topography, li2001ellipsoid}. Since this formula calculates the theoretical gravity at any height \(h\) relative to the ellipsoid, the theoretical gravity value \(\gamma_h\) was directly compared with the observed gravity \(g_{\text{obs}}\), yielding the \change{gravity disturbance}{Gravity Disturbance} \(\delta g\) as per Equation \ref{eq:gravit_d2}.
 
-The Boule library offers various reference ellipsoids; therefore, the GRS80 ellipsoid was adopted due to its compatibility with GNSS data, which include latitude, longitude, and ellipsoidal height, associated with the gravimetric data. The GRS80 is currently the ellipsoid recommended by the International Association of Geodesy \citep{Moritz1980}.
+The Boule library offers various reference ellipsoids; therefore, the GRS80 ellipsoid was adopted due to its compatibility with GNSS data, which include latitude, longitude, and ellipsoidal height, associated with the gravimetric data. \change{The}{Furthermore,} GRS80 is currently the ellipsoid recommended by the International Association of Geodesy \citep{Moritz1980}.
 
 \subsection{Obtaining the Bouguer Disturbance}
 
 The magnitude of the actual gravity vector on the geoid is estimated using methods such as free-air correction, Bouguer correction, and Helmert condensation, resulting in the so-called free-air and Bouguer anomalies, among others \citep{heiskanen1967physical}. Although these tools and concepts are shared by two branches of geoscience, geodesy and geophysics, their application differs due to distinct objectives. In geodesy, for instance, gravity is used to define quasi-geoid models that serve as a reference for height measurements and Earth mapping. In geophysics, gravity assists in the identification of geological features through variations in subsurface density \citep{li2001ellipsoid}.
 
-For geodesy, the gravity disturbance on the Earth's surface \(\delta g\), obtained by Equation \ref{eq:gravit_d2}, eliminates the need for additional reductions. On the other hand, in geophysics, applying the Bouguer reduction to the Gravity Disturbance results in the Bouguer Disturbance, adapting the traditional concept of Bouguer Anomaly to Gravity Disturbances instead of free-air anomalies, a method established by \cite{segawa1984gravity}. The introduction of the Bouguer Disturbance provides a more precise geophysical measurement, less affected by the undulations of the geoid and, consequently, more directly related to subsurface density variations, making it particularly useful for geophysical and geological studies aimed at understanding the structure of the Earth's crust and upper mantle \citep{segawa1984gravity}. Additionally, the direct use of ellipsoidal heights, which are now more accurate than orthometric heights and directly obtained via GNSS positioning.
+For geodesy, the \change{gravity disturbance}{Gravity Disturbance} on the Earth's surface \(\delta g\), obtained by Equation \ref{eq:gravit_d2}, eliminates the need for additional reductions. On the other hand, in geophysics, applying the Bouguer reduction to the Gravity Disturbance results in the Bouguer Disturbance, adapting the traditional concept of Bouguer Anomaly to Gravity Disturbances instead of free-air anomalies, a method established by \cite{segawa1984gravity}. The introduction of the Bouguer Disturbance provides a more precise geophysical measurement, less affected by the undulations of the geoid and, consequently, more directly related to subsurface density variations, making it particularly useful for geophysical and geological studies aimed at understanding the structure of the Earth's crust and upper mantle \citep{segawa1984gravity}. Additionally, the direct use of ellipsoidal heights, which are now more accurate than orthometric heights and directly obtained via GNSS positioning.
 
 The Bouguer Reduction could be performed in two stages: the effect of the Bouguer Plate and the topographic correction. However, it is also possible to calculate the total effect of the topographic masses in a unified procedure. For this purpose, the masses are modeled using rectangular prisms (Figure \ref{fig:Terrain Correction}), allowing the gravitational effect of each prism \(C_P\) to be determined at each observation point \citep{hofmann2006physical}.
 
@@ -227,30 +141,30 @@ By comparing the measured values with the predicted values for the same points, 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.44]{Figures/tc.png}
-	\caption{Schematic representation of the Earth's surface discretized into elementary figures, where the columns represent rectangular prisms with bases at the geoid level.}
+	\caption{Schematic representation of the \change{Earth's}{Earth} surface discretized \change{into}{in} elementary figures, where the columns represent rectangular prisms with bases at the \change{geoid}{sea} level.}
 	\label{fig:Terrain Correction}
 \end{figure}
 
 
-For this study, the calculation of the complet Bouguer disturbance was conducted using the Harmonica library \citep{Harmonica}. The method employed is based on the direct modeling of topographic masses. The prism\_layer algorithm generates a regular grid of prisms with uniform sizes in the horizontal directions, allowing for the adjustment of the upper and lower bounds of each prism. After creating the prisms, the harmonica.prism\_gravity function can be used to calculate their gravitational effects at each observation point.
+For this study, the calculation of the \change{complet}{complete}  Bouguer disturbance was conducted using the Harmonica library \citep{Harmonica}. The method employed is based on the direct modeling of topographic masses. The prism\_layer algorithm generates a regular grid of prisms with uniform sizes in the horizontal directions, allowing for the adjustment of the upper and lower bounds of each prism. After creating the prisms, the harmonica.prism\_gravity function can be used to calculate their gravitational effects at each observation point.
 
-Topographic data from the global digital elevation model FABDEM \citep{Hawker_2022fabdem}, integrated with bathymetry from SRTM15+ \citep{Tozer2019SRTM15Plus}, were used in the modeling of prisms, Figure \ref{fig:mde}. FABDEM was chosen because it is closer to a digital terrain model as it has undergone filtering of trees and buildings. Given the vast extent of the study area, the topographic data were resampled to a resolution of 500 meters. The density assigned to the prisms was defined based on the Lateral Topographic Density model for Brazil (LTDBrasil) \citep{Madeiros2021densityBrazil}, by taking the arithmetic average of the model values for Paraná \(\rho = 2512 \hspace{5pt} kg/m^3\), Figure \ref{fig:ltdbrasil}. Finally, the complet Bouguer disturbance \(\delta g_B\) can be calculated as per Equation \ref{eq:prismas}.
+Topographic data from the global digital elevation model FABDEM \citep{Hawker_2022fabdem}, integrated with bathymetry from SRTM15+ \citep{Tozer2019SRTM15Plus}, were used in the modeling of prisms, Figure \ref{fig:mde}. FABDEM was chosen because it is closer to a digital terrain model as it has undergone filtering of trees and buildings. Given the vast extent of the study area, the topographic data were resampled to a resolution of 500 meters. The density assigned to the prisms was defined based on the Lateral Topographic Density model for Brazil (\change{LTDBrasil}{LTD\_Brasil}) \citep{Madeiros2021densityBrazil}, by taking the arithmetic average of the model values for Paraná \(\rho = 2512 \hspace{5pt} kg/m^3\), Figure \ref{fig:ltdbrasil}. Finally, the \change{complet}{complete} Bouguer disturbance \(\delta g_B\) can be calculated as per Equation \ref{eq:prismas}.
 
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa_hipsometria_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_hipsometria_jan2025.png}
 		\caption{}
 		\label{fig:mde}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/LDT_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/LDT_jan2025.png}
 		\caption{}
 		\label{fig:ltdbrasil}
-	\end{subfigure} 
-	\caption{(a) Digital elevation model , adapted from \cite{Hawker_2022fabdem} and \cite{Tozer2019SRTM15Plus}; (b) Lateral Topographic Density model for State of Paraná, adapted from \cite{Madeiros2021densityBrazil}.}
+	\end{subfigure}
+	\caption{(a) Digital elevation model, adapted from \cite{Tozer2019SRTM15Plus} and \cite{Hawker_2022fabdem}; (b) Lateral Topographic Density model for State of Paraná, adapted from \cite{Madeiros2021densityBrazil}.}
 	\label{fig:subfigs}
 \end{figure}
 
@@ -265,14 +179,16 @@ This method is distinguished from conventional techniques (such as weighted aver
 
 The `EquivalentSources` class from the Harmonica library \citep{Harmonica} was used. Three parameters were adjusted for the configuration of the equivalent sources layer: `block\_size`, `depth`, and `damping`. The `block\_size` parameter was set to the same value as the grid resolution. `Depth` was established at 3.5 times the grid resolution value. Finally, a value of 100 was adopted for the `damping` parameter. The grid was constructed using the `verde.grid\_coordinates` function from the Verde library \citep{Verde}, which generates coordinates for each point on a regular grid.
 
-The determination of the optimal resolution for gridding the gravimetric data was based on analyzing the distance to the nearest neighbor among the gravimetric stations. Using Python, the distance from each measurement point to its nearest neighbor (nnd) was calculated using the 'cKDTree' data structure \citep{narasimhulu2021ckd}, and the results were then plotted in the boxplot and histogram (Figure \ref{fig:nnd}). 
+The determination of the optimal resolution for gridding the gravimetric data was based on analyzing the distance to the nearest neighbor among the gravimetric stations. Using Python, the distance from each measurement point to its nearest neighbor (nnd) was calculated using the 'cKD-Tree' data structure \citep{narasimhulu2021ckd}, and the results were then plotted in the boxplot and histogram (Figure \ref{fig:nnd}).
 
-Based on the analysis of the graphs, the data were divided into three distinct categories: Overlapping Data (nnd < median), Concentrated Data (\( \text{median} \leq \text{nnd} < \text{mean} \)), and Scattered Data (\( \text{nnd} \geq \text{mean} \)). It was observed that the combination of Overlapping and Concentrated Data represented more than 50\% of the total data. However, the spatial representativeness of these groups was considered insufficient, as evidenced by their plotting on the map (Figure \ref{fig:ConcentratedOverlapping}). In contrast, although the Scattered Data constituted only 27.5\% of the total dataset, they demonstrated significantly greater spatial representativeness, as visually verified on the map (Figure \ref{fig:Scattered_mar2024}). The decision on the gridding resolution was based on the analysis of the distances between the stations of the Scattered Data. A resolution of 1600m was chosen, half the median distance to the nearest neighbor within the Scattered Data, rounded down to the nearest lower multiple of 100.
+Based on the analysis of the graphs, the data were divided into three distinct categories: Overlapping Data (nnd < median), Concentrated Data (\( \text{median} \leq \text{nnd} < \text{mean} \)), and Scattered Data (\( \text{nnd} \geq \text{mean} \)). It was observed that the combination of Overlapping and Concentrated Data represented more than 50\% of the total data. However, the spatial representativeness of these groups was considered insufficient, as evidenced by their plotting on the map (Figure \ref{fig:ConcentratedOverlapping}). In contrast, although the Scattered Data constituted only 27.5\% of the total dataset, they demonstrated significantly greater spatial representativeness, as visually verified on the map (Figure \ref{fig:Scattered_mar2024}).
+The decision on the gridding resolution was based on the analysis of the distances between the stations of the Scattered Data.
+A resolution of 1600m was chosen, half the median distance to the nearest neighbor within the Scattered Data, rounded down to the nearest lower multiple of 100.
 
 \begin{figure}[h!]
 	\centering
 	\includegraphics[scale=0.5]{Figures/nnd.png}
-	\caption{Combined graph illustrating the frequency distribution of the distance to the nearest neighbor. The top part displays a boxplot, detailing the outliers, while the bottom part presents a histogram with indicative lines for the mean (blue dashed line), median (red dashed line), and the first and third quartiles (yellow dashed lines). The distribution also shows the dispersion in relation to the standard deviation (green dashed lines).}
+	\caption{Combined graph illustrating the frequency distribution of the distance to the nearest neighbor. The top part displays a boxplot, detailing the outliers, while the bottom part presents a histogram with indicative lines for the mean (\change{blue}{red} dashed line), median (\change{red}{yellow} dashed line), and the first and third quartiles (yellow dashed lines). The distribution also shows the dispersion in relation to the standard deviation (green dashed lines).}
 	\label{fig:nnd}
 \end{figure}
 
@@ -280,23 +196,23 @@ Based on the analysis of the graphs, the data were divided into three distinct c
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa_Concentrated_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_Concentrated_jan2025.png}
 		\caption{}
 		\label{fig:ConcentratedOverlapping}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa_Scattered_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_Scattered_jan2025.png}
 		\caption{}
 		\label{fig:Scattered_mar2024}
-	\end{subfigure} 
+	\end{subfigure}
 	\caption{(a) Overlapping Data (nnd $<$ median) and Concentrated Data (median $\leq$ nnd $<$ mean); (b) Scattered Data (nnd $\geq$ mean).}
 	\label{fig:subfigs}
 \end{figure}
 
 \subsection{Application of Filters}
 
-Data filtering is employed to highlight features in the anomalous gravity field. Predominantly, enhancement filter methods are based on vertical or horizontal derivatives of the gravitational field, or their combinations, identifying edges or centers of sources through maximum, minimum, or zero values in the transformed data. 
+Data filtering is employed to highlight features in the anomalous gravity field. Predominantly, enhancement filter methods are based on vertical or horizontal derivatives of the gravitational field, or their combinations, identifying edges or centers of sources through maximum, minimum, or zero values in the transformed data.
 
 The Harmonica library \citep{Harmonica} was used to calculate the horizontal derivatives and the first vertical derivative. The functions harmonica.derivative\_easting and harmonica.derivative\_northing calculated the horizontal derivatives along the \(x\) and \(y\) axes, respectively, using the finite difference method, chosen for its accuracy and lack of edge effects.
 
@@ -318,9 +234,9 @@ The first vertical derivative of a potential field is expressed by the limit of 
 \end{equation}
 
 
-%\subsubsection{Total Horizontal Gradient (THDR)}
+%\subsubsection{Total Horizontal \change{Gradient}{Derivative} (THDR)}
 
-The Total Horizontal Gradient (THDR) measures the total variation of the potential field on the horizontal surface, regardless of the direction of this variation \citep{cordell1985mapping}. Its magnitude at a point reflects the intensity of the horizontal variation at that point, which can indicate the proximity of a source edge or an abrupt transition in subsurface properties \citep{cordell1985mapping}. The THDR is obtained by the square root of the sum of the squares of the horizontal derivatives \citep{cordell1985mapping}:
+The Total Horizontal \change{Gradient}{Derivative} (THDR) measures the total variation of the potential field on the horizontal surface, regardless of the direction of this variation \citep{cordell1985mapping}. Its magnitude at a point reflects the intensity of the horizontal variation at that point, which can indicate the proximity of a source edge or an abrupt transition in subsurface properties \citep{cordell1985mapping}. The THDR is obtained by the square root of the sum of the squares of the horizontal derivatives \citep{cordell1985mapping}:
 
 \begin{equation}\label{eq:THDR}
    THDR = \sqrt{\left(\dfrac{\partial \delta g_B}{\partial x}\right)^2 + \left(\dfrac{\partial \delta g_B}{\partial y}\right)^2} \text{.}
@@ -328,7 +244,7 @@ The Total Horizontal Gradient (THDR) measures the total variation of the potenti
 
 %\subsubsection{Tilt Derivative (TDR)}
 
-Using the relationship between the first vertical derivative and the THDR, the Signal Tilt (TDR) provides a uniform detection of sources, effectively responding to sources at different depths \citep{miller1994potential}. The method uses the tilt of the signal to locate sources of potential fields, generating a measure that is positive directly above a source and negative in other regions \citep{miller1994potential}. The TDR is defined by the inverse tangent of the ratio between the first vertical derivative and the THDR, given by \citep{miller1994potential}:
+Using the relationship between the first vertical derivative and the THDR, the \change{Signal Tilt}{Tilt Derivative} (TDR) provides a uniform detection of sources, effectively responding to sources at different depths \citep{miller1994potential}. The method uses the tilt of the signal to locate sources of potential fields, generating a measure that is positive directly above a source and negative in other regions \citep{miller1994potential}. The TDR is defined by the inverse tangent of the ratio between the first vertical derivative and the THDR, given by \citep{miller1994potential}:
 
 
  \begin{equation}\label{eq:TDR}
@@ -345,13 +261,13 @@ After gridding the data and applying the filters, the Rasterio library \citep{Ra
 
 The cartographic data used originates from the Continuous Cartographic Base of Brazil, at a scale of 1:250,000 \citep{BaseCartografica_IBGE}. Considering that the State of Paraná spans two zones, UTM 21S and UTM 22S, the SIRGAS 2000 / Brazil Polyconic coordinate reference system was chosen.
 
-To further enhance the anomalies, layers of shaded relief with different vertical exaggerations were overlaid on the maps. The ten colors in the scales divide the values into deciles; the Batlow color scale \citep{crameri2020misuse} was chosen for its accuracy in representing data variations in a perceptually uniform manner, without introducing visual distortions. This choice ensures that equivalent increments in the data are perceived as equivalent variations in the visualization \citep{crameri2020misuse}. The design of this scale takes into account accessibility for individuals with color-related visual impairments, thus expanding data comprehension to a broader audience \citep{crameri2020misuse}. 
+To further enhance the anomalies, layers of shaded relief with different vertical exaggerations were overlaid on the maps. The ten colors in the scales divide the values into deciles; the Batlow color scale \citep{crameri2020misuse} was chosen for its accuracy in representing data variations in a perceptually uniform manner, without introducing visual distortions. This choice ensures that equivalent increments in the data are perceived as equivalent variations in the visualization \citep{crameri2020misuse}. The design of this scale takes into account accessibility for individuals with color-related visual impairments, thus expanding data comprehension to a broader audience \citep{crameri2020misuse}.
 
 \section{RESULTS AND DISCUSSION}
 
 \subsection{Gravity Disturbance in Paraná}
 
-Figure \ref{fig:gd} illustrates the spatial distribution of the gravity disturbance in the study area. At this stage, the effect of the topographic masses has not been accounted for, leading to a strong correlation between the gravity disturbance and the topography. For comparison, Figure \ref{fig:fr_zanon} displays the free-air anomaly as presented in \cite{Zanon2022}.
+Figure \ref{fig:gd} illustrates the spatial distribution of the \change{gravity disturbance}{Gravity Disturbance} in the study area. At this stage, the effect of the topographic masses has not been accounted for, leading to a strong correlation between the \change{gravity disturbance}{Gravity Disturbance} and the topography. For comparison, Figure \ref{fig:fr_zanon} displays the free-air anomaly as presented in \cite{Zanon2022}.
 
 
 
@@ -361,17 +277,17 @@ Figure \ref{fig:gd} illustrates the spatial distribution of the gravity disturba
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/ae_livre_zanon_jan2025 cópia.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/ae_livre_zanon_jan2025 cópia.png}
 		\caption{}
 		\label{fig:fr_zanon}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa_gd_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_gd_jan2025.png}
 		\caption{}
 		\label{fig:gd}
-	\end{subfigure} 
-	\caption{(a) Free-air gravity anomaly map of the study area by \cite{Zanon2022}.; (b) Gravity disturbance map of the State of Paraná.}
+	\end{subfigure}
+	\caption{(a) Free-air gravity anomaly map of the study area by \cite{Zanon2022}; (b) \change{Gravity disturbance}{Gravity Disturbance} map of the State of Paraná.}
 	\label{fig:subfigs}
 \end{figure}
 
@@ -382,69 +298,69 @@ Figure \ref{fig:bouguer} presents the spatial distribution of the Bouguer Distur
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/bouguer_zanon_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/bouguer_zanon_jan2025.png}
 		\caption{}
 		\label{fig:bouguer_zanon}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa3_bouguer_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa3_bouguer_jan2025.png}
 		\caption{}
 		\label{fig:bouguer}
-	\end{subfigure} 
-	\caption{(a) Bouguer gravity anomaly map of the study area by \cite{Zanon2022}.; (b) Bouguer Disturbance map of the State of Paraná.}
+	\end{subfigure}
+	\caption{(a) Bouguer gravity anomaly map of the study area by \cite{Zanon2022}; (b) Bouguer Disturbance map of the State of Paraná.}
 	\label{fig:subfigs}
 \end{figure}
 
 In the Bouguer Disturbance (Figure \ref{fig:estruBD}), geological features with remarkable gravity response can be separated in two groups, according to their orientations. The first groups is NE-SW oriented, following the orogenic orientation of the Ribeira Belt. Two large amplitude anomalies are in the west-northwest to central area. A remarkable positive anomaly can be noticed in the west-northwest area ( $\delta g_B > -60.8\,mGal$), and it matches a classical crustal structure of Paraná Basin basement, the Paranapanema Block, interpreted as a cratonic block \citep{mantovani2005delimitation}. Conversely, deep gravity lows about  $\delta g_B < -92.1\,mGal$ are settled in central parts of the state, and most of them worked as basin depocenters, according to previous interpretations \citep{ferreira1981contribuiccao, souzafilho2022}. Other areas also were depocenters and have present-day positive gravity response (e.g., NW portion of the Ponta Grossa Arc,  \citep{ferreira1981contribuiccao, souzafilho2022}), but they were transformed by posterior magmatic intrusions and crustal bending in the Atlantic opening process. Other NE-SW structures are in the SE portion, clearly related to the Southern Ribeira Belt structures. Some NE-SW linear anomalies are associated with outcropping geological contacts and faulting zones.
 
-The second group of structures is NW-SE oriented, and are closely related to large magmatic intrusions associated with the continental breakup in the South Atlantic \citep{peate1997parana, szatmari2016tectonic}. Dykes, sills and lava flows are part of the significant magmatic activity in this area. However, due to the limitations of the potential field methods in detecting sub-horizontal sheets \citep{Blakely1996}, lava flows and sills can be hardly detected by gravity, if their borders are not thick enough in relation to the area or the data resolution. On the other hand, the lateral density contrast caused by subvertical sheets generates linear positive anomalies, especially into the sedimentary basin. Therefore, one of the major NW-SE structures in the state is the Ponta Grossa Dyke Swarm, which crosses the State of Paraná. In between São Jerônimo-Curiúva Lineament (SJCL) and Rio Alonzo fault (RAF) alignments, there are a positive stripe of values in the Bouguer Disturbance ($-92.1\,mGal < \delta g_B < -67.2\,mGal$), contrasting with background values $\delta g_B < -92.1\,mGal$, and corresponds to the principal concentration of vertical sheets in the dyke swarm \citep{portela2003estimativas}. This structure is even well detailed on magnetic maps, due to the high magnetic susceptibility of these sheets (e.g., \citep{ferreira1981contribuiccao, souzafilho2022}). Stronger than the dyke swarm, is the positive signature of Ponta Grossa Arch ( $\delta g_B > -60.8\,mGal$). The complete Ponta Grossa Arch is larger than the studied area \citep{ferreira1982integraccao}, but the axis of the Ponta Grossa Arch correspond to the area with higher amplitude, in the eastern portion of the state. The NW-SE oriented arch axis partially matches the dyke swarm, but it is limited to about the central Paraná state, whereas the dyke swarm goes through the Paraná Basin, at least until the Transbrasiliano lineament (e.g., \citep{souzafilho2022}).
+The second group of structures is NW-SE oriented, and are closely related to large magmatic intrusions associated with the continental breakup in the South Atlantic \citep{peate1997parana, szatmari2016tectonic}. Dykes, sills and lava flows are part of the significant magmatic activity in this area. However, due to the limitations of the potential field methods in detecting sub-horizontal sheets \citep{Blakely1996}, lava flows and sills can be hardly detected by gravity, if their borders are not thick enough in relation to the area or the data resolution. On the other hand, the lateral density contrast caused by subvertical sheets generates linear positive anomalies, especially into the sedimentary basin. Therefore, one of the major NW-SE structures in the state is the Ponta Grossa Dyke Swarm, which crosses the State of Paraná. In between São Jerônimo-Curiúva Lineament (SJCL) and Rio Alonzo fault (RAF) alignments, there are a positive stripe of values in the Bouguer Disturbance ($-92.1\,mGal < \delta g_B < -67.2\,mGal$), contrasting with background values $\delta g_B < -92.1\,mGal$, and corresponds to the principal concentration of vertical sheets in the dyke swarm \citep{portela2003estimativas}. This structure is even well detailed on magnetic maps, due to the high magnetic susceptibility of these sheets \citep{ferreira1981contribuiccao, souzafilho2022}. Stronger than the dyke swarm, is the positive signature of Ponta Grossa Arch ( $\delta g_B > -60.8\,mGal$). The complete Ponta Grossa Arch is larger than the studied area \citep{ferreira1982integraccao}, but the axis of the Ponta Grossa Arch correspond to the area with higher amplitude, in the eastern portion of the state. The NW-SE oriented arch axis partially matches the dyke swarm, but it is limited to about the central \change{Paraná state}{State of Paraná}, whereas the dyke swarm goes through the Paraná Basin, at least until the Transbrasiliano lineament \citep{souzafilho2022}.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.65]{Classe_submit/Figures/mapa_estruBD_30jan2025.png}
+	\includegraphics[scale=0.65]{./Figures/mapa_estruBD_30jan2025.png}
 	\caption{Bouguer Disturbance data in the State of Paraná, overlaid by regional geological features.}
 	\label{fig:estruBD}
 \end{figure}
 
 
-\subsection{Total Horizontal Gradient and Tilt Derivative in Paraná}
-Figure \ref{fig:THDR} represents the result of applying the Total Horizontal Gradient (THDR) enhancement filters. The THDR is higher where there are abrupt transitions in the scalar field, such as at contacts between different types of rocks or in fault zones \citep{cordell1985mapping}. This makes THDR a tool for highlighting geological structures at their edges. Figure \ref{fig:TDR} represents the result of applying the Tilt Derivative (TDR) enhancement filter. This measure has the unique property of being positive over the source of the anomaly and negative in other areas, which is crucial for identifying the presence and edges of an anomaly \citep{miller1994potential}. The differential of TDR is its ability to effectively respond to both shallow and deep sources, overcoming limitations of other techniques that may not clearly identify deeper sources due to lower gradient amplitudes \citep{miller1994potential}.
+\subsection{Total Horizontal \change{Gradient}{Derivative} and Tilt Derivative in Paraná}
+Figure \ref{fig:THDR} represents the result of applying the Total Horizontal \change{Gradient}{Derivative} (THDR) enhancement filters. The THDR is higher where there are abrupt transitions in the scalar field, such as at contacts \change{between}{among}  different types of rocks or in fault zones \citep{cordell1985mapping}. This makes THDR a tool for highlighting geological structures at their edges. Figure \ref{fig:TDR} represents the result of applying the Tilt Derivative (TDR) enhancement filter. This measure has the unique property of being positive over the source of the anomaly and negative in other areas, which is crucial for identifying the presence and edges of an anomaly \citep{miller1994potential}. The differential of TDR is its ability to effectively respond to both shallow and deep sources, overcoming limitations of other techniques that may not clearly identify deeper sources due to lower gradient amplitudes \citep{miller1994potential}.
 
 \begin{figure}[h!]
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa_THDR_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_THDR_jan2025.png}
 		\caption{}
 		\label{fig:THDR}
 	\end{subfigure}
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{Classe_submit/Figures/mapa_TDR_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_TDR_jan2025.png}
 		\caption{}
 		\label{fig:TDR}
-	\end{subfigure} 
-	\caption{(a) Total Horizontal Gradient (THDR) map of the gravitational field in the State of Paraná, values in microgals per meter (µGal/m).; (b) Tilt Derivative (TDR) map for the State of Paraná, representing the tilt derivative, values in radians.}
+	\end{subfigure}
+	\caption{(a) Total Horizontal \change{Gradient}{Derivative} (THDR) map of the gravitational field in the State of Paraná, values in microgals per meter ($\mu Gal/m$); (b) Tilt Derivative (TDR) map for the State of Paraná, representing the tilt derivative, values in radians.}
 	\label{fig:subfigs}
 \end{figure}
 
-In the THDR map (Figure \ref{fig:estruTHDR}), it is noticed the detached response of $THDR > 0.66\,\mu\text{Gal}/m$, following the RAF structure. Another enhanced structure is the geological contact of the Curitiba Terrane and Luiz Alves cratonic fragment, which matches the MPL structure. Southwards, the Rio Piên unit reveals a high amplitude THDR anomaly ($THDR > 1.07\,\mu\text{Gal}/m$), possibly given by the lateral density contrast of its high mafic content. Nortwards, in the Atuba Complex (Curitiba Terrane), THDR anomalies tend to have lower amplitude, with $THDR < 0.25\,\mu\text{Gal}/m$. 
+In the THDR map (Figure \ref{fig:estruTHDR}), it is noticed the detached response of $THDR > 0.66\,\mu\text{Gal}/m$, following the RAF structure. Another enhanced structure is the geological contact of the Curitiba Terrane and Luiz Alves \change{cratonic fragment}{Terrane}, which matches the MPL structure. Southwards, the Rio Piên unit reveals a high amplitude THDR anomaly ($THDR > 1.07\,\mu\text{Gal}/m$), possibly given by the lateral density contrast of its high mafic content. \change{Nortwards}{Northwards}, in the Atuba Complex (Curitiba Terrane), THDR anomalies tend to have lower amplitude, with $THDR < 0.25\,\mu\text{Gal}/m$.
 
-The anomalous NW-SE stripe, attributed to the high concentration of sheeted dykes, between  SJCL and RAF, was better defined by positive peaks of $TDR > 0.25\,\text{rad}$ (Figure \ref{fig:estruISA}). About NE-SW linear features, such as Mandirituba-Piraquara Lineament (MPL), Almirante Tamandaré Shear Zone (ATSZ), Lancinha Shear Zone (LSZ) and Itapirapuã Shear Zone (ISZ), they seem to be better represented by the THDR map. 
-%Considering that THDR equalizes the response of the sources, and the higher linearity of NE-SW, we deduce that the top of the sources vary along the fault zones. 
+The anomalous NW-SE stripe, attributed to the high concentration of sheeted dykes, between  SJCL and RAF, was better defined by positive peaks of $TDR > 0.25\,\text{rad}$ (Figure \ref{fig:estruISA}). About NE-SW linear features, such as Mandirituba-Piraquara Lineament (MPL), Almirante Tamandaré Shear Zone (ATSZ), Lancinha Shear Zone (LSZ) and Itapirapuã Shear Zone (ISZ), they seem to be better represented by the THDR map.
+%Considering that THDR equalizes the response of the sources, and the higher linearity of NE-SW, we deduce that the top of the sources vary along the fault zones.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.65]{Classe_submit/Figures/mapa_estruGHT_30jan2025.png}
-	\caption{Total Horizontal Gradient (THDR) data of the State of Paraná, overlaid by regional geological features.}
+	\includegraphics[scale=0.65]{./Figures/mapa_estruGHT_30jan2025.png}
+	\caption{Total Horizontal \change{Gradient}{Derivative} (THDR) data of the State of Paraná, overlaid by regional geological features.}
 	\label{fig:estruTHDR}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.65]{Classe_submit/Figures/mapa_estruISA_30jan2025.png}
-    
+	\includegraphics[scale=0.65]{./Figures/mapa_estruISA_30jan2025.png}
+
 	\caption{Tilt Derivative (TDR) data of the State of Paraná, overlaid by regional geological features.}
 	\label{fig:estruISA}
 \end{figure}
@@ -463,8 +379,8 @@ The anomalous NW-SE stripe, attributed to the high concentration of sheeted dyke
 %		\includegraphics[width=0.95\textwidth]{Figures/mapa_bouguer_abr2024.png}
 %		\caption{}
 %		\label{fig:bouguer}
-%	\end{subfigure} 
-%	\caption{(a) Gravity disturbance map of the State of Paraná, demonstrating variations in the intensity of the gravitational field in mGal; (b) Bouguer Disturbance map of the State of Paraná, demonstrating variations in the intensity of the gravitational field in mGal.}
+%	\end{subfigure}
+%	\caption{(a) \change{Gravity disturbance}{Gravity Disturbance} map of the State of Paraná, demonstrating variations in the intensity of the gravitational field in mGal; (b) Bouguer Disturbance map of the State of Paraná, demonstrating variations in the intensity of the gravitational field in mGal.}
 %	\label{}
 %\end{figure}
 
@@ -481,8 +397,8 @@ The anomalous NW-SE stripe, attributed to the high concentration of sheeted dyke
 %		\includegraphics[width=0.95\textwidth]{Figures/mapa_TDR_abr2024.png}
 %		\caption{}
 %		\label{fig:TDR}
-%	\end{subfigure} 
-%	\caption{(a) Total Horizontal Gradient (THDR) map of the gravitational field in the State of Paraná, values in microgals per meter (µGal/m); (b) Tilt Derivative (TDR) map for the State of Paraná, representing the tilt of the analytic signal in radians.}
+%	\end{subfigure}
+%	\caption{(a) Total Horizontal \change{Gradient}{Derivative} (THDR) map of the gravitational field in the State of Paraná, values in microgals per meter (µGal/m); (b) Tilt Derivative (TDR) map for the State of Paraná, representing the tilt of the analytic signal in radians.}
 %	\label{}
 %\end{figure}
 
@@ -505,9 +421,9 @@ The anomalous NW-SE stripe, attributed to the high concentration of sheeted dyke
 
 This work compiled a comprehensive dataset of gravimetric data related to the State of Paraná and subjected it to advanced processing techniques, using exclusively open-source tools. The code used in the analysis is available on \href{https://github.com/ErosKerouak/GRAV_PR}{GitHub}, allowing for the replication of results and their use in future research.
 
-We use two alternative techniques for performing the Bouguer calculation and the data gridding. The Gravity disturbance is our gravity anomaly for the Bouguer calculation, instead of the classical Free-Air Anomaly, in order to avoid inferences in the heights. In the gridding process, we have used the equivalent sources, a suitable method for gravity data with irregular stations distribution.
+We use two alternative techniques for performing the Bouguer calculation and the data gridding. The \change{Gravity disturbance}{Gravity Disturbance} is our gravity anomaly for the Bouguer calculation, instead of the classical Free-Air Anomaly, in order to avoid inferences in the heights. In the gridding process, we have used the equivalent sources, a suitable method for gravity data with irregular stations distribution.
 
-With the use of the equivalent source interpolation method and the reduction of data by the gravity disturbance, the obtained products (Figures \ref{fig:gd}, \ref{fig:bouguer}) demonstrate benefits in data analysis for geological interpretations compared to the products generated by \cite{Zanon2022} (Figures \ref{fig:fr_zanon} and \ref{fig:bouguer_zanon}).
+With the use of the equivalent source interpolation method and the reduction of data by the \change{gravity disturbance}{Gravity Disturbance}, the obtained products (Figures \ref{fig:gd}, \ref{fig:bouguer}) demonstrate benefits in data analysis for geological interpretations compared to the products generated by \cite{Zanon2022} (Figures \ref{fig:fr_zanon} and \ref{fig:bouguer_zanon}).
 
 The resulting Bouguer Anomaly and derived maps have good correlation with first-order gravity structures in the State of Paraná, corroborating the effectiveness of gravity methods in the detection of contrasting density structures. For example, anomalies higher than -60.8 mGal matched the Paranapanema Block in the western-northwestern portion of the area.  Similarly, the outcropping Proterozoic basement encompassed by the Ponta Grossa Arch is one of the most remarkable structures in the Bouguer map.
 
