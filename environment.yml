@@ -1,0 +1,40 @@
+name: GRAV_PR
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python>=3.10,<3.12
+
+  # Núcleo científico
+  - numpy
+  - scipy
+  - pandas
+  - xarray
+
+  # Geoespacial
+  - geopandas
+  - pyproj
+  - rasterio
+
+  # Visualização
+  - matplotlib
+  - seaborn
+
+  # Geofísica / Geodésia
+  - harmonica
+  - verde
+  - boule
+
+  # For building LaTeX documents
+  - make
+  - tectonic
+
+  # Should be on every project
+  - pip
+  - conda-lock
+  - jupyterlab
+  - black
+
+  # Things that need to come from pip
+  - pip:
+      - black[jupyter]
