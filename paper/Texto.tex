@@ -19,14 +19,14 @@
 %%%%%%%%%%%%%%%%%%%%
 %    Keywords: list 3 to 5 relevant keywords to the manuscript, separate them by semicolon. Avoid repeating
 %    words in the title. Use lower case. Capital letters only when spelling requires.
-\keywords{Fatiando a Terra; Bouguer Disturbance; Paranapanema Block; Paraná Basin; Ponta Grossa Arch}
+\keywords{Gravity Database; Bouguer Disturbance; Paranapanema Block; Paraná Basin; Ponta Grossa Arch}
 %
 \begin{document}
 
 
 \begin{abstract}
 
-This article presents a gravity data integration and a regional geophysical overview of the geological framework in the State of Paraná, southern Brazil. For data processing, we used \change{open source}{open-source} computational tools based on Python libraries from the Fatiando a Terra \change{project}{Project}. Data processing included determining theoretical gravity on the physical surface of the Earth, calculating the \change{gravity disturbance}{Gravity Disturbance}, modeling topographic masses to obtain the complete Bouguer disturbance, data gridding using the equivalent source method, and the application of enhancement techniques. The products obtained were compared with previous geological studies, revealing a robust correlation between our results and the main geological characteristics from literature. Some relatively high values of the Bouguer Disturbance indicate important structural features, such as the Paranapanema Block and the Ponta Grossa Arch. Additionally, enhancement techniques highlighted relevant geological structures, in both the Paraná Basin and the Proterozoic orogenic basement. Using the gravity method and \change{open source}{open-source} tools, this work aims to serve as a reference for future geophysical and geological investigations in the State of Paraná. The gravity maps of the Paraná are a valuable unified database for the scientific community and for future geophysical investigations. These data will be made available in an open repository, facilitating access and encouraging use in subsequent research and practical applications.
+This article presents a gravity data integration and a regional geophysical overview of the geological framework in the State of Paraná, southern Brazil. For data processing, we used \change{open source}{open-source} computational tools based on Python libraries from the Fatiando a Terra \change{project}{Project}. Data processing included determining theoretical gravity on the physical surface of the Earth, calculating the \change{gravity disturbance}{Gravity Disturbance}, modeling topographic masses to obtain the complete \change{Bouguer disturbance}{Bouguer Disturbance}, data gridding using the equivalent source method, and the application of enhancement techniques. The products obtained were compared with previous geological studies, revealing a robust correlation between our results and the main geological characteristics from literature. Some relatively high values of the Bouguer Disturbance indicate important structural features, such as the Paranapanema Block and the Ponta Grossa Arch. Additionally, enhancement techniques highlighted relevant geological structures, in both the Paraná Basin and the Proterozoic orogenic basement. Using the gravity method and \change{open source}{open-source} tools, this work aims to serve as a reference for future geophysical and geological investigations in the State of Paraná. The gravity maps of the Paraná are a valuable unified database for the scientific community and for future geophysical investigations. These data will be made available in an open repository, facilitating access and encouraging use in subsequent research and practical applications.
 \end{abstract}
 
 
@@ -43,7 +43,7 @@ Finally, to demonstrate the improvement in the compilation of ground gravimetric
 
 The objective of this work was to integrate the available ground gravimetric data from various public, private, and academic platforms to obtain an integrated and optimized view of the gravitational features in Paraná, improving the relationship \change{between}{among} different sources by constructing a single homogenized database, made publicly available in a repository for future use by the scientific community and industry and serve as a reference for future geophysical and geological investigations in the State of Paraná. To achieve this, ground gravimetric data from different sources were compiled, and Modern techniques for analyzing gravimetric data were adopted.
 
-\section{GEOLOGICAL CONTEXT}
+\section*{GEOLOGICAL CONTEXT}
 
 The oldest geological records in the State of Paraná are magmatic and metamorphic Proterozoic units, as part of the southeastern continental margin of the South American Plate. In the Phanerozoic Eon, the Proterozoic basement was partially covered by sedimentary units and intruded by magmatic rocks. The simplified geological map of the State of Paraná is shown in Figure \ref{fig:Geological_Map}, where the outcropping basement is represented by NE-oriented units near to the coastline, eastwards. The central and western basement of the State of Paraná is overlaid by sedimentary and volcanic units of Paraná and Bauru basins \citep{Milani2007petrobras}.
 
@@ -88,8 +88,8 @@ Gravimetric studies have defined the existence of a distinct continental block, 
 
 
 
-\section{MATERIALS AND METHOD}
-\subsection{Gravity Data}
+\section*{MATERIALS AND METHOD}
+\subsection*{Gravity Data}
 
 The data used in this study (Figure \ref{fig:dados}) were collected by a wide range of institutions, namely Petróleo Brasileiro S/A (Petrobras), Agência Nacional do Petróleo, Gás Natural e Biocombustíveis (National Agency of Petroleum, Natural Gas and Biofuels, ANP), Instituto de Astronomia, Geofísica e Ciências Atmosféricas da Universidade de São Paulo (Institute of Astronomy, Geophysics and Atmospheric Sciences of the University of São Paulo, IAG USP), Instituto Brasileiro de Geografia e Estatística (Brazilian Institute of Geography and Statistics, IBGE), Observatório Nacional (National Observatory, ON), Serviço Geológico do Brasil (Geological Survey of Brazil, SGB/CPRM), and Universidade Federal do Paraná (Federal University of Paraná, UFPR).
 \added{Figure~\ref{fig:dados} shows not only the spatial distribution of the ground gravity data, but also the quantitative contribution of each institution to the dataset, expressed as the number of data points provided.}
@@ -104,7 +104,7 @@ Most of this data was included in the compilation of the Banco Nacional de Dados
 	\label{fig:dados}
 \end{figure}
 
-\subsection{Obtaining the Gravity Disturbance}
+\subsection*{Obtaining the Gravity Disturbance}
 
 Considering \(P\) and \(Q\) as points located respectively on the surfaces of the geoid and the ellipsoid, a gravity anomaly \(\Delta g\) is defined as the difference between the magnitude of the actual gravity vector on the geoid surface, \(g_P\), and the magnitude of the theoretical gravity vector on the ellipsoid surface, \(\gamma_Q\), as follows \citep{hofmann2006physical}:
 
@@ -122,7 +122,7 @@ In this study, the theoretical gravity was obtained using the Boule library \cit
 
 The Boule library offers various reference ellipsoids; therefore, the GRS80 ellipsoid was adopted due to its compatibility with GNSS data, which include latitude, longitude, and ellipsoidal height, associated with the gravimetric data. \change{The}{Furthermore,} GRS80 is currently the ellipsoid recommended by the International Association of Geodesy \citep{Moritz1980}.
 
-\subsection{Obtaining the Bouguer Disturbance}
+\subsection*{Obtaining the Bouguer Disturbance}
 
 The magnitude of the actual gravity vector on the geoid is estimated using methods such as free-air correction, Bouguer correction, and Helmert condensation, resulting in the so-called free-air and Bouguer anomalies, among others \citep{heiskanen1967physical}. Although these tools and concepts are shared by two branches of geoscience, geodesy and geophysics, their application differs due to distinct objectives. In geodesy, for instance, gravity is used to define quasi-geoid models that serve as a reference for height measurements and Earth mapping. In geophysics, gravity assists in the identification of geological features through variations in subsurface density \citep{li2001ellipsoid}.
 
@@ -146,9 +146,9 @@ By comparing the measured values with the predicted values for the same points, 
 \end{figure}
 
 
-For this study, the calculation of the \change{complet}{complete}  Bouguer disturbance was conducted using the Harmonica library \citep{Harmonica}. The method employed is based on the direct modeling of topographic masses. The prism\_layer algorithm generates a regular grid of prisms with uniform sizes in the horizontal directions, allowing for the adjustment of the upper and lower bounds of each prism. After creating the prisms, the harmonica.prism\_gravity function can be used to calculate their gravitational effects at each observation point.
+For this study, the calculation of the \change{complet}{complete}  \change{Bouguer disturbance}{Bouguer Disturbance} was conducted using the Harmonica library \citep{Harmonica}. The method employed is based on the direct modeling of topographic masses. The prism\_layer algorithm generates a regular grid of prisms with uniform sizes in the horizontal directions, allowing for the adjustment of the upper and lower bounds of each prism. After creating the prisms, the harmonica.prism\_gravity function can be used to calculate their gravitational effects at each observation point.
 
-Topographic data from the global digital elevation model FABDEM \citep{Hawker_2022fabdem}, integrated with bathymetry from SRTM15+ \citep{Tozer2019SRTM15Plus}, were used in the modeling of prisms, Figure \ref{fig:mde}. FABDEM was chosen because it is closer to a digital terrain model as it has undergone filtering of trees and buildings. Given the vast extent of the study area, the topographic data were resampled to a resolution of 500 meters. The density assigned to the prisms was defined based on the Lateral Topographic Density model for Brazil (\change{LTDBrasil}{LTD\_Brasil}) \citep{Madeiros2021densityBrazil}, by taking the arithmetic average of the model values for Paraná \(\rho = 2512 \hspace{5pt} kg/m^3\), Figure \ref{fig:ltdbrasil}. Finally, the \change{complet}{complete} Bouguer disturbance \(\delta g_B\) can be calculated as per Equation \ref{eq:prismas}.
+Topographic data from the global digital elevation model FABDEM \citep{Hawker_2022fabdem}, integrated with bathymetry from SRTM15+ \citep{Tozer2019SRTM15Plus}, were used in the modeling of prisms, Figure \ref{fig:mde}. FABDEM was chosen because it is closer to a digital terrain model as it has undergone filtering of trees and buildings. Given the vast extent of the study area, the topographic data were resampled to a resolution of 500 meters. The density assigned to the prisms was defined based on the Lateral Topographic Density model for Brazil (\change{LTDBrasil}{LTD\_Brazil}) \citep{Madeiros2021densityBrazil}, by taking the arithmetic average of the model values for Paraná \(\rho = 2512 \hspace{5pt} kg/m^3\), Figure \ref{fig:ltdbrasil}. Finally, the \change{complet}{complete} \change{Bouguer disturbance}{Bouguer Disturbance} \(\delta g_B\) can be calculated as per Equation \ref{eq:prismas}.
 
 \begin{figure}[h!]
 	\centering
@@ -168,7 +168,7 @@ Topographic data from the global digital elevation model FABDEM \citep{Hawker_20
 	\label{fig:subfigs}
 \end{figure}
 
-\subsection{Gridding the data using the equivalent sources technique}
+\subsection*{Gridding the data using the equivalent sources technique}
 
 The equivalent sources technique is a method for interpolating observed potential fields, such as gravimetric and magnetic data. This method involves stipulating a distribution of sources that would produce the observed potential field. The field from these idealized sources can then be calculated anywhere above the measurements. This two-step procedure, an inverse problem followed by a direct calculation, provides a way to continue potential fields from surface to surface \citep{Blakely1996}. The hypothetical sources must produce a potential field that is harmonic in the area of interest, vanishes at infinity, and reproduces the observed field; they do not need to resemble the true distribution of sources \citep{Blakely1996}.
 
@@ -179,7 +179,7 @@ This method is distinguished from conventional techniques (such as weighted aver
 
 The `EquivalentSources` class from the Harmonica library \citep{Harmonica} was used. Three parameters were adjusted for the configuration of the equivalent sources layer: `block\_size`, `depth`, and `damping`. The `block\_size` parameter was set to the same value as the grid resolution. `Depth` was established at 3.5 times the grid resolution value. Finally, a value of 100 was adopted for the `damping` parameter. The grid was constructed using the `verde.grid\_coordinates` function from the Verde library \citep{Verde}, which generates coordinates for each point on a regular grid.
 
-The determination of the optimal resolution for gridding the gravimetric data was based on analyzing the distance to the nearest neighbor among the gravimetric stations. Using Python, the distance from each measurement point to its nearest neighbor (nnd) was calculated using the 'cKD-Tree' data structure \citep{narasimhulu2021ckd}, and the results were then plotted in the boxplot and histogram (Figure \ref{fig:nnd}).
+The determination of the optimal resolution for gridding the gravimetric data was based on analyzing the distance to the nearest neighbor among the gravimetric stations. Using Python, the distance from each measurement point to its nearest neighbor (nnd) was calculated using the \change{'cKD-Tree'}{'CKD-Tree'} data structure \citep{narasimhulu2021ckd}, and the results were then plotted in the boxplot and histogram (Figure \ref{fig:nnd}).
 
 Based on the analysis of the graphs, the data were divided into three distinct categories: Overlapping Data (nnd < median), Concentrated Data (\( \text{median} \leq \text{nnd} < \text{mean} \)), and Scattered Data (\( \text{nnd} \geq \text{mean} \)). It was observed that the combination of Overlapping and Concentrated Data represented more than 50\% of the total data. However, the spatial representativeness of these groups was considered insufficient, as evidenced by their plotting on the map (Figure \ref{fig:ConcentratedOverlapping}). In contrast, although the Scattered Data constituted only 27.5\% of the total dataset, they demonstrated significantly greater spatial representativeness, as visually verified on the map (Figure \ref{fig:Scattered_mar2024}).
 The decision on the gridding resolution was based on the analysis of the distances between the stations of the Scattered Data.
@@ -210,7 +210,7 @@ A resolution of 1600m was chosen, half the median distance to the nearest neighb
 	\label{fig:subfigs}
 \end{figure}
 
-\subsection{Application of Filters}
+\subsection*{Application of Filters}
 
 Data filtering is employed to highlight features in the anomalous gravity field. Predominantly, enhancement filter methods are based on vertical or horizontal derivatives of the gravitational field, or their combinations, identifying edges or centers of sources through maximum, minimum, or zero values in the transformed data.
 
@@ -256,16 +256,16 @@ Using the relationship between the first vertical derivative and the THDR, the \
 
 
 
-\subsection{Map Layouts}
+\subsection*{Map Layouts}
 After gridding the data and applying the filters, the Rasterio library \citep{Rasterio} was used to convert the results into the GeoTIFF format. The GeoTIFF files were subsequently imported into the QGIS software \citep{QGIS_software}, where color scales were set up and layouts were designed.
 
 The cartographic data used originates from the Continuous Cartographic Base of Brazil, at a scale of 1:250,000 \citep{BaseCartografica_IBGE}. Considering that the State of Paraná spans two zones, UTM 21S and UTM 22S, the SIRGAS 2000 / Brazil Polyconic coordinate reference system was chosen.
 
 To further enhance the anomalies, layers of shaded relief with different vertical exaggerations were overlaid on the maps. The ten colors in the scales divide the values into deciles; the Batlow color scale \citep{crameri2020misuse} was chosen for its accuracy in representing data variations in a perceptually uniform manner, without introducing visual distortions. This choice ensures that equivalent increments in the data are perceived as equivalent variations in the visualization \citep{crameri2020misuse}. The design of this scale takes into account accessibility for individuals with color-related visual impairments, thus expanding data comprehension to a broader audience \citep{crameri2020misuse}.
 
-\section{RESULTS AND DISCUSSION}
+\section*{RESULTS AND DISCUSSION}
 
-\subsection{Gravity Disturbance in Paraná}
+\subsection*{Gravity Disturbance in Paraná}
 
 Figure \ref{fig:gd} illustrates the spatial distribution of the \change{gravity disturbance}{Gravity Disturbance} in the study area. At this stage, the effect of the topographic masses has not been accounted for, leading to a strong correlation between the \change{gravity disturbance}{Gravity Disturbance} and the topography. For comparison, Figure \ref{fig:fr_zanon} displays the free-air anomaly as presented in \cite{Zanon2022}.
 
@@ -291,7 +291,7 @@ Figure \ref{fig:gd} illustrates the spatial distribution of the \change{gravity 
 	\label{fig:subfigs}
 \end{figure}
 
-\subsection{Bouguer Disturbance in Paraná}
+\subsection*{Bouguer Disturbance in Paraná}
 Figure \ref{fig:bouguer} presents the spatial distribution of the Bouguer Disturbance in Paraná. The Bouguer Reduction involves removing a constant factor from the gravitational effect, equivalent to what would be produced by topographic masses, assuming they had a homogeneous density. As a result, the Bouguer Disturbance reflects the density variations of the topographic masses. For comparison, Figure \ref{fig:bouguer_zanon} displays the Bouguer anomaly as presented in \cite{Zanon2022}.
 
 \begin{figure}[h!]
@@ -324,7 +324,7 @@ The second group of structures is NW-SE oriented, and are closely related to lar
 \end{figure}
 
 
-\subsection{Total Horizontal \change{Gradient}{Derivative} and Tilt Derivative in Paraná}
+\subsection*{Total Horizontal \change{Gradient}{Derivative} and Tilt Derivative in Paraná}
 Figure \ref{fig:THDR} represents the result of applying the Total Horizontal \change{Gradient}{Derivative} (THDR) enhancement filters. The THDR is higher where there are abrupt transitions in the scalar field, such as at contacts \change{between}{among}  different types of rocks or in fault zones \citep{cordell1985mapping}. This makes THDR a tool for highlighting geological structures at their edges. Figure \ref{fig:TDR} represents the result of applying the Tilt Derivative (TDR) enhancement filter. This measure has the unique property of being positive over the source of the anomaly and negative in other areas, which is crucial for identifying the presence and edges of an anomaly \citep{miller1994potential}. The differential of TDR is its ability to effectively respond to both shallow and deep sources, overcoming limitations of other techniques that may not clearly identify deeper sources due to lower gradient amplitudes \citep{miller1994potential}.
 
 \begin{figure}[h!]
@@ -440,6 +440,6 @@ F. J. F. Ferreira was supported in this research by the National Council for Sci
 \newpage
 
 \bibliographystyle{seg}
-\bibliography{refs_exemplo}
+\bibliography{references}
 
 \end{document}
