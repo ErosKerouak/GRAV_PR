@@ -53,8 +53,8 @@
 %                       bookeditor introduced; in book, inbook, incollection,
 %                       inproceedings and proceedings: publisher before volume
 %   17-jun-08   (JS)    Comma added before and in two-author references
-%   17-jul-09   (JS)    added earticle and webpage fields in accordance 
-%                       with 'Instructions to Authors', Geophysics, 
+%   17-jul-09   (JS)    added earticle and webpage fields in accordance
+%                       with 'Instructions to Authors', Geophysics,
 %                       Jan/Feb 2009. Field earticle has entries doi, url,
 %                       and accessed (or lastchecked for compatibility with
 %                       other solutions) in addition to all conventional
@@ -94,8 +94,8 @@ ENTRY
 %%                      new entry for webpage
     lastchecked
 %    month		not used in apalike  %% nor seglike.bst
-    meeting		%% introduced in accordance with SEG's seg.bst	
-    meetingnr		%% introduced in adaptation of geophys.bst	
+    meeting		%% introduced in accordance with SEG's seg.bst
+    meetingnr		%% introduced in adaptation of geophys.bst
     note
     number
 %%			since number is suppressed in normal journal
@@ -121,7 +121,7 @@ ENTRY
     year
   }
   {}
-  { label extra.label sort.label 
+  { label extra.label sort.label
   }
 
 INTEGERS { output.state before.all mid.sentence after.sentence after.block
@@ -184,7 +184,7 @@ FUNCTION {output.year.check}
 { year empty$
     { "empty year in " cite$ * warning$ }
     { write$
-%%      " (" year * extra.label * ")" *  
+%%      " (" year * extra.label * ")" *
 %%                                      changed to SEG style (no parentheses)
        " " year * extra.label *
 
@@ -315,20 +315,24 @@ FUNCTION {format.names}
   #1 'nameptr :=
   s num.names$ 'numnames :=
   numnames 'namesleft :=
-  suppressetal duplicate$ empty$ % Verifica se o campo suppressetal está vazio
-    { #0 }                        % Se estiver vazio, não altera o limite
-    { "true" =                    % Se suppressetal = true
-        { #1 }                    % Mostra apenas o primeiro autor
-        { numnames }              % Caso contrário, mostra todos
+
+  suppressetal empty$
+    { numnames }
+    { suppressetal "true" =
+        { #1 }
+        { numnames }
       if$
     }
   if$
-  namesleft 'namesleft :=
+  'namesleft :=
+
   { namesleft #0 > }
-    { numnames namesleft =
-        { s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't := }  % Último nome primeiro
-        { s nameptr "{f. }{vv~}{ll}{, jj}" format.name$ 't := }  % Primeiro nome primeiro
+    {
+      nameptr #1 =
+        { s nameptr "{vv~}{ll}{, jj}{, f.}" format.name$ 't := } % primeiro
+        { s nameptr "{f. }{vv~}{ll}{, jj}" format.name$ 't := } % demais
       if$
+
       nameptr #1 >
         { namesleft #1 >
             { ", " * t * }
@@ -345,12 +349,22 @@ FUNCTION {format.names}
         }
         't
       if$
+
       nameptr #1 + 'nameptr :=
       namesleft #1 - 'namesleft :=
     }
   while$
-}
 
+  % se truncou artificialmente, garante "et al."
+  suppressetal "true" =
+    { numnames #1 >
+        { " et~al." * }
+        'skip$
+      if$
+    }
+    'skip$
+  if$
+}
 
 
 FUNCTION {format.authors}
@@ -374,7 +388,7 @@ FUNCTION {format.bookeditors.book}       %% this function is just for seglike
     { "" }                              %% allowed in book and inbook
     { " (" bookeditor format.names *
       bookeditor num.names$ #1 >
-%%	{ ", editors" * }   
+%%	{ ", editors" * }
 %%	{ ", editor" * }
         { ", eds." * }                  %% SEG style
         { ", ed." * }                   %% SEG style
@@ -390,21 +404,21 @@ FUNCTION {format.editors}
     { "" }
     { editor format.names
       editor num.names$ #1 >
-%%	{ ", editors" * }   
-%%	{ ", editor" * }
-        { ", eds.," * }                  %% SEG style
-        { ", ed.," * }                   %% SEG style
+        { " (Eds.)" * }
+        { " (Ed.)" * }
       if$
     }
   if$
 }
+
+
 
 FUNCTION {format.bookeditors}
 { bookeditor empty$
     { "" }
     { bookeditor format.names
       bookeditor num.names$ #1 >
-%%	{ ", editors" * }   
+%%	{ ", editors" * }
 %%	{ ", editor" * }
         { ", eds.," * }                  %% SEG style
         { ", ed.," * }                   %% SEG style
@@ -423,7 +437,7 @@ FUNCTION {format.chapter}
 FUNCTION {format.url.access}
 { url empty$
     { "" "url empty in " cite$ * warning$ }
-    { ", url: \verb+" * url * "+" * 
+    { ", url: \verb+" * url * "+" *
       lastchecked empty$
         { accessed empty$
             { "accessed \today" "both lastchecked and accessed empty in " cite$ * warning$ }
@@ -628,16 +642,23 @@ FUNCTION {format.chapter.pages}
 FUNCTION {format.in.ed.booktitle}
 { booktitle empty$
     { "" }
-    { bookeditor empty$
-%	{ "In " booktitle emphasize * }
-%	{ "In " format.editors * ", " * booktitle emphasize * }
-%%			%% modified according to seg.bst
-        { "{\it in} " booktitle * }
-        { "{\it in} " format.bookeditors * " " * booktitle * }
+    {
+      editor empty$
+        {
+          bookeditor empty$
+            { "{\it in} " booktitle * }
+            { "{\it in} " format.bookeditors * ". " * booktitle * }
+          if$
+        }
+        { "{\it in} " format.editors * ". " * booktitle * }
       if$
     }
   if$
 }
+
+
+
+
 
 FUNCTION {format.in.ed.title}                   %% used in inbook
 { title empty$
@@ -810,7 +831,7 @@ FUNCTION {format.meeting.ad.ab}
       format.meeting.seg *
     }
   if$
-  publisher empty$                                     %% no publisher given 
+  publisher empty$                                     %% no publisher given
     { "" * }                                           %%    do nothing
     { ", " *                                           %% else
     publisher *                                        %%    use publisher
@@ -823,6 +844,14 @@ FUNCTION {format.meeting.ad.ab}
     }
   if$
 }
+
+FUNCTION {format.book.pages}
+{ pages empty$
+    { "" }
+    { pages " pp." * }
+  if$
+}
+
 
 FUNCTION {article}
 { output.bibitem
@@ -861,29 +890,45 @@ FUNCTION {book}
       if$
     }
   if$
-  output.year.check                             % special for apalike
-% new.block                                     %% no period for seglike
-%  format.btitle "title" output.check	        %% treat book titles like 
+  output.year.check
+
   crossref missing$
-    { format.title "title" output.check         %%  any titles in seglike
-      format.edition output                     %% edition right after title
+    { format.title "title" output.check
+      format.edition output
       format.bvolume output
       new.block
       format.number.series output
-      format.bookeditors.book output             %% Allow bookeditor
-      new.colon					%% colon for seglike
+      format.bookeditors.book output
+      new.colon
       publisher "publisher" output.check
-%      new.sentence
-%      address output				%% address suppressed
+
+      % --- NEW: print publisher location if provided ---
+      address empty$
+        { skip$ }
+        { new.block
+          address output
+        }
+      if$
+      % --- NEW: total number of pages for books ---
+      pages empty$
+        { skip$ }
+        { format.book.pages output }
+      if$
     }
     { new.block
       format.book.crossref output.nonnull
     }
   if$
+
+  % --- NEW: print DOI/URL for books too ---
+  new.block
+  format.doi.url output
+
   new.block
   format.note output
   fin.entry
 }
+
 
 FUNCTION {booklet}
 { output.bibitem
@@ -940,11 +985,10 @@ FUNCTION {inbook}
 FUNCTION {incollection}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
-% new.block						%% no period
+  author format.key output
+  output.year.check
   format.title "title" output.check
-% new.block						%% no period
+
   crossref missing$
     { format.in.ed.booktitle "booktitle" output.check
       format.edition output
@@ -954,7 +998,6 @@ FUNCTION {incollection}
       format.number.series output
       format.chapter output
       format.pages output
-%      address output				%% address suppressed
     }
     { format.incoll.inproc.crossref output.nonnull
       format.chapter.pages output
@@ -967,39 +1010,52 @@ FUNCTION {incollection}
   fin.entry
 }
 
+
+
+
 FUNCTION {inproceedings}
 { output.bibitem
   format.authors "author" output.check
-  author format.key output				% special for
-  output.year.check					% apalike
-% new.block						%% no period
+  author format.key output              % special for apalike
+  output.year.check
+
   format.title "title" output.check
-% new.block						%% no period
-  new.colon						%% colon instead
+  new.colon                             % colon after title
+
   crossref missing$
-    { format.meeting.ad.ab output			%% from geophys.bst
-%%				 volume, number, series, and address
-%%				 suppressed as well as order changed
-%%				 all treated in format.meeting.ad.ab
-%%      format.in.ed.booktitle "booktitle" output.check
-%%      format.bvolume output
-%%      format.number.series output
-%%      format.pages output
-%%      address output					% for apalike
-%%      new.sentence					% there's no year
-%%      organization output				% here so things
-%%      publisher output				% are simpler
+    {
+      % --- Conference/proceedings info (existing SEG logic) ---
+      format.meeting.ad.ab output
+
+      % --- NEW: force event location to appear if provided ---
+      address empty$
+        { skip$ }
+        { new.block
+          address output
+        }
+      if$
+
+      % --- OPTIONAL: pages (many styles omit; include if reviewer expects it) ---
+      pages empty$
+        { skip$ }
+        { new.block
+          format.pages output
+        }
+      if$
     }
-    { format.incoll.inproc.crossref output.nonnull
+    {
+      format.incoll.inproc.crossref output.nonnull
       format.pages output
     }
   if$
+
   new.block
   format.doi.url output
   new.block
   format.note output
   fin.entry
 }
+
 
 FUNCTION {conference} { inproceedings }
 
@@ -1009,7 +1065,7 @@ FUNCTION {manual}
   author format.key output				% special for
   output.year.check					% apalike
 % new.block						%% no period
-%  format.btitle "title" output.check		%% treat book titles like 
+%  format.btitle "title" output.check		%% treat book titles like
   format.title "title" output.check		%%  any titles in seglike
   new.colon						%% colon instead
   organization address new.block.checkb
@@ -1071,7 +1127,7 @@ FUNCTION {phdthesis}
   author format.key output				% special for
   output.year.check					% apalike
 % new.block						%% no period
-%  format.btitle "title" output.check		%% treat book titles like 
+%  format.btitle "title" output.check		%% treat book titles like
   format.title "title" output.check		%% any titles in seglike
 % new.block						%% no period
   new.colon						%% colon instead
@@ -1089,7 +1145,7 @@ FUNCTION {proceedings}
   editor format.key output				% special for
   output.year.check					% apalike
 % new.block						%% no period
-%  format.btitle "title" output.check		%% treat book titles like 
+%  format.btitle "title" output.check		%% treat book titles like
   format.title "title" output.check		%% any titles in seglike
 %                                               %% no addres in seglike
 % address output				% for apalike

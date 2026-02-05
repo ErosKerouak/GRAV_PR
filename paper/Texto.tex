@@ -6,10 +6,12 @@
 
 \usepackage[normalem]{ulem}
 \usepackage{xcolor}
+\definecolor{darkgreenhl}{RGB}{0,120,0} % verde escuro elegante
 
 
-
-\newcommand{\added}[1]{\textcolor{blue}{#1}}
+\newcommand{\added}[1]{
+    \textcolor{darkgreenhl}{\textbf{#1}}
+    }
 \newcommand{\removed}[1]{\textcolor{red}{\sout{#1}}}
 \newcommand{\change}[2]{\removed{#1} \added{#2}}
 
@@ -19,9 +21,12 @@
 %%%%%%%%%%%%%%%%%%%%
 %    Keywords: list 3 to 5 relevant keywords to the manuscript, separate them by semicolon. Avoid repeating
 %    words in the title. Use lower case. Capital letters only when spelling requires.
-\keywords{Gravity Database; Bouguer Disturbance; Paranapanema Block; Paraná Basin; Ponta Grossa Arch}
+\keywords{
+    \change{Fatiando a Terra}{Gravity Database}; Bouguer Disturbance; Paranapanema Block; Paraná Basin; Ponta Grossa Arch
+    }
 %
 \begin{document}
+
 
 
 \begin{abstract}
@@ -36,7 +41,7 @@ In this work, various available gravimetric data were integrated, revealing the 
 
 Initially, the Gravity Disturbance was used as the raw gravimetric anomaly instead of the classic Free-Air Anomaly. The chosen gravimetric anomaly benefits from using ellipsoidal heights derived from GNSS records. This method avoids using orthometric heights, which are influenced by the selected geoid model \citep{segawa1984gravity}. The Bouguer correction, traditionally applied to free-air anomalies, was then applied to the \change{gravity disturbance}{Gravity Disturbance}, resulting in the so-called Bouguer Disturbance. As defined by \cite{segawa1984gravity}, this is an adaptation of the traditional concept of Bouguer anomaly for \change{gravity disturbance}{Gravity Disturbance}s instead of free-air anomalies, providing a more accurate reading of the gravitational field, less affected by geoid undulations and more directly related to subsurface density variations. Consequently, the Bouguer Disturbance proves to be particularly effective for geophysical and geological studies aimed at understanding the Earth's crust and upper mantle structure \citep{segawa1984gravity}.
 
-A second optimized technique was applied to the interpolation of the data. The equivalent source method \citep{dampney1969equivalent, cooper2000gridding, Soler2019} was employed before applying enhancement filters, such as the Total Horizontal \change{Gradient}{Derivative} (THDR), \cite{cordell1985mapping} and the Tilt Derivative (TDR), \cite{miller1994potential}.
+A second optimized technique was applied to the interpolation of the data. The equivalent source method \citep{dampney1969equivalent, cooper2000gridding, Soler2021} was employed before applying enhancement filters, such as the Total Horizontal \change{Gradient}{Derivative} (THDR), \cite{cordell1985mapping} and the Tilt Derivative (TDR), \cite{miller1994potential}.
 
 Finally, to demonstrate the improvement in the compilation of ground gravimetric data in the State of Paraná and the implementation of the new interpolation and processing techniques, the maps from this work were compared with those from \cite{Zanon2022}.
 
@@ -49,7 +54,7 @@ The oldest geological records in the State of Paraná are magmatic and metamorph
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.75]{./Figures/mapa_geo_jan2025.png}
+	\includegraphics[scale=0.75]{./Figures/mapa_geo_05fev2026.png}
 	\caption{Simplified Geological Map of the State of Paraná, adapted from \cite{besser2021mapa}}
 	\label{fig:Geological_Map}
 \end{figure}
@@ -79,7 +84,7 @@ Gravimetric studies have defined the existence of a distinct continental block, 
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.75]{./Figures/mapa_estru_30jan2025.png}
+	\includegraphics[scale=0.75]{./Figures/mapa_estru_05fev2026.png}
 	\caption{Main Geological Structures in the State of Paraná, adapted from \cite{besser2021mapa}}
 	\label{fig:Structures}
 \end{figure}
@@ -135,7 +140,7 @@ The Bouguer Reduction could be performed in two stages: the effect of the Bougue
                  &= \delta g - C_P \text{.}
 \end{align}
 
-By comparing the measured values with the predicted values for the same points, the Bouguer Disturbance reveals anomalous masses whose densities exceed or are less than a theoretical average value, \(\rho\). The value of \(2670 \, \text{kg/m}^3\), proposed by \cite{harkness1891solar} based on crystalline rocks, is commonly adopted \citep{hinze2003bouguer}. However, this assumption often does not accurately reflect reality, as demonstrated for the Brazilian territory by \cite{Madeiros2021densityBrazil}.
+By comparing the measured values with the predicted values for the same points, the Bouguer Disturbance reveals anomalous masses whose densities exceed or are less than a theoretical average value, \(\rho\). The value of \(2670 \, \text{kg/m}^3\), proposed by \cite{harkness1891solar} based on crystalline rocks, is commonly adopted \citep{hinze2003bouguer}. However, this assumption often does not accurately reflect reality, as demonstrated for the Brazilian territory by \cite{Medeiros2021densityBrazil}.
 
 
 \begin{figure}[h!]
@@ -148,7 +153,7 @@ By comparing the measured values with the predicted values for the same points, 
 
 For this study, the calculation of the \change{complet}{complete}  \change{Bouguer disturbance}{Bouguer Disturbance} was conducted using the Harmonica library \citep{Harmonica}. The method employed is based on the direct modeling of topographic masses. The prism\_layer algorithm generates a regular grid of prisms with uniform sizes in the horizontal directions, allowing for the adjustment of the upper and lower bounds of each prism. After creating the prisms, the harmonica.prism\_gravity function can be used to calculate their gravitational effects at each observation point.
 
-Topographic data from the global digital elevation model FABDEM \citep{Hawker_2022fabdem}, integrated with bathymetry from SRTM15+ \citep{Tozer2019SRTM15Plus}, were used in the modeling of prisms, Figure \ref{fig:mde}. FABDEM was chosen because it is closer to a digital terrain model as it has undergone filtering of trees and buildings. Given the vast extent of the study area, the topographic data were resampled to a resolution of 500 meters. The density assigned to the prisms was defined based on the Lateral Topographic Density model for Brazil (\change{LTDBrasil}{LTD\_Brazil}) \citep{Madeiros2021densityBrazil}, by taking the arithmetic average of the model values for Paraná \(\rho = 2512 \hspace{5pt} kg/m^3\), Figure \ref{fig:ltdbrasil}. Finally, the \change{complet}{complete} \change{Bouguer disturbance}{Bouguer Disturbance} \(\delta g_B\) can be calculated as per Equation \ref{eq:prismas}.
+Topographic data from the global digital elevation model FABDEM \citep{Hawker2022fabdem}, integrated with bathymetry from SRTM15+ \citep{Tozer2019SRTM15Plus}, were used in the modeling of prisms, Figure \ref{fig:mde}. FABDEM was chosen because it is closer to a digital terrain model as it has undergone filtering of trees and buildings. Given the vast extent of the study area, the topographic data were resampled to a resolution of 500 meters. The density assigned to the prisms was defined based on the Lateral Topographic Density model for Brazil (\change{LTDBrasil}{LTD\_Brazil}) \citep{Medeiros2021densityBrazil}, by taking the arithmetic average of the model values for Paraná \(\rho = 2512 \hspace{5pt} kg/m^3\), Figure \ref{fig:ltdbrasil}. Finally, the \change{complet}{complete} \change{Bouguer disturbance}{Bouguer Disturbance} \(\delta g_B\) can be calculated as per Equation \ref{eq:prismas}.
 
 \begin{figure}[h!]
 	\centering
@@ -164,7 +169,7 @@ Topographic data from the global digital elevation model FABDEM \citep{Hawker_20
 		\caption{}
 		\label{fig:ltdbrasil}
 	\end{subfigure}
-	\caption{(a) Digital elevation model, adapted from \cite{Tozer2019SRTM15Plus} and \cite{Hawker_2022fabdem}; (b) Lateral Topographic Density model for State of Paraná, adapted from \cite{Madeiros2021densityBrazil}.}
+	\caption{(a) Digital elevation model, adapted from \cite{Tozer2019SRTM15Plus} and \cite{Hawker2022fabdem}; (b) Lateral Topographic Density model for State of Paraná, adapted from \cite{Medeiros2021densityBrazil}.}
 	\label{fig:subfigs}
 \end{figure}
 
@@ -277,7 +282,7 @@ Figure \ref{fig:gd} illustrates the spatial distribution of the \change{gravity 
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{./Figures/ae_livre_zanon_jan2025 cópia.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/ae_livre_zanon_05fev2026.png}
 		\caption{}
 		\label{fig:fr_zanon}
 	\end{subfigure}
@@ -298,7 +303,7 @@ Figure \ref{fig:bouguer} presents the spatial distribution of the Bouguer Distur
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{./Figures/bouguer_zanon_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/bouguer_zanon_05fev2026.png}
 		\caption{}
 		\label{fig:bouguer_zanon}
 	\end{subfigure}
@@ -318,7 +323,7 @@ The second group of structures is NW-SE oriented, and are closely related to lar
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.65]{./Figures/mapa_estruBD_30jan2025.png}
+	\includegraphics[scale=0.65]{./Figures/mapa_estruBD_05fev2026.png}
 	\caption{Bouguer Disturbance data in the State of Paraná, overlaid by regional geological features.}
 	\label{fig:estruBD}
 \end{figure}
@@ -331,7 +336,7 @@ Figure \ref{fig:THDR} represents the result of applying the Total Horizontal \ch
 	\centering
 	\begin{subfigure}[b]{0.49\textwidth}
 		\centering
-		\includegraphics[width=0.95\textwidth]{./Figures/mapa_THDR_jan2025.png}
+		\includegraphics[width=0.95\textwidth]{./Figures/mapa_THDR_05fev2026.png}
 		\caption{}
 		\label{fig:THDR}
 	\end{subfigure}
@@ -345,21 +350,21 @@ Figure \ref{fig:THDR} represents the result of applying the Total Horizontal \ch
 	\label{fig:subfigs}
 \end{figure}
 
-In the THDR map (Figure \ref{fig:estruTHDR}), it is noticed the detached response of $THDR > 0.66\,\mu\text{Gal}/m$, following the RAF structure. Another enhanced structure is the geological contact of the Curitiba Terrane and Luiz Alves \change{cratonic fragment}{Terrane}, which matches the MPL structure. Southwards, the Rio Piên unit reveals a high amplitude THDR anomaly ($THDR > 1.07\,\mu\text{Gal}/m$), possibly given by the lateral density contrast of its high mafic content. \change{Nortwards}{Northwards}, in the Atuba Complex (Curitiba Terrane), THDR anomalies tend to have lower amplitude, with $THDR < 0.25\,\mu\text{Gal}/m$.
+In the THDR map (Figure \ref{fig:estruTHDR}), it is noticed the detached response of $THDR > 0.66\,\mu\text{Gal}/m$, following the RAF structure. Another enhanced structure is the geological contact of the Curitiba Terrane and \change{Luiz}{Luis} Alves \change{cratonic fragment}{Terrane}, which matches the MPL structure. Southwards, the Rio Piên unit reveals a high amplitude THDR anomaly ($THDR > 1.07\,\mu\text{Gal}/m$), possibly given by the lateral density contrast of its high mafic content. \change{Nortwards}{Northwards}, in the Atuba Complex (Curitiba Terrane), THDR anomalies tend to have lower amplitude, with $THDR < 0.25\,\mu\text{Gal}/m$.
 
 The anomalous NW-SE stripe, attributed to the high concentration of sheeted dykes, between  SJCL and RAF, was better defined by positive peaks of $TDR > 0.25\,\text{rad}$ (Figure \ref{fig:estruISA}). About NE-SW linear features, such as Mandirituba-Piraquara Lineament (MPL), Almirante Tamandaré Shear Zone (ATSZ), Lancinha Shear Zone (LSZ) and Itapirapuã Shear Zone (ISZ), they seem to be better represented by the THDR map.
 %Considering that THDR equalizes the response of the sources, and the higher linearity of NE-SW, we deduce that the top of the sources vary along the fault zones.
 
 \begin{figure}[h!]
 	\centering
-	\includegraphics[scale=0.65]{./Figures/mapa_estruGHT_30jan2025.png}
+	\includegraphics[scale=0.65]{./Figures/mapa_estruGHT_05fev2026.png}
 	\caption{Total Horizontal \change{Gradient}{Derivative} (THDR) data of the State of Paraná, overlaid by regional geological features.}
 	\label{fig:estruTHDR}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[scale=0.65]{./Figures/mapa_estruISA_30jan2025.png}
+	\includegraphics[scale=0.65]{./Figures/mapa_estruISA_05fev2026.png}
 
 	\caption{Tilt Derivative (TDR) data of the State of Paraná, overlaid by regional geological features.}
 	\label{fig:estruISA}
@@ -433,13 +438,34 @@ Finally, the methodology used here represents an alternative mapping approach an
 
 \section*{ACKNOWLEDGMENTS}
 
-We thank the Laboratory of Applied Geophysics Research (LPGA) for the technical support and infrastructure provided for this work. We also thank the Coordination for the Improvement of Higher Education Personnel (CAPES) for the master's scholarship funding, which enabled the development of this research.
+We thank the Laboratory of Applied Geophysics Research (LPGA)\added{, Federal University of Paraná (UFPR),} for the technical support and infrastructure provided for this work. We also thank the \change{Coordination for the Improvement of Higher Education Personnel}{Brazilian Federal Agency for Support and Evaluation of Graduate Education} (CAPES) for the master's scholarship funding, which enabled the development of this research.
 
-F. J. F. Ferreira was supported in this research by the National Council for Scientific and Technological Development (CNPq - Brazil), under contract 308956/2022-2.
+F. J. F. Ferreira was supported in this research by the National Council for Scientific and Technological Development (CNPq\added{ -- Brazil}), under contract 308956/2022-2.
+
+\section*{DATA AND MATERIALS AVAILABILITY}
+
+\added{
+The data, processing routines, and supporting materials used in this study are publicly available in a GitHub repository at: \url{https://github.com/ErosKerouak/GRAV_PR.git}.
+}
+
+
+
 
 \newpage
+% --- Bibliography ---
 
+
+
+%\bibliographystyle{plainnat}
+%\bibliographystyle{abbrv}
+
+
+%\bibliographystyle{plain} % or choose another style like 'apalike', 'ieeetr', etc.
 \bibliographystyle{seg}
+%\bibliographystyle{plainnat}
+%\bibliographystyle{apalike}
+%\bibliographystyle{ieeetr}
 \bibliography{references}
+
 
 \end{document}

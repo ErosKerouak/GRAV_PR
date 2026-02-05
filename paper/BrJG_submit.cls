@@ -17,7 +17,7 @@
 %%
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% -------------------------------------------------------------------
-%% 
+%%
 %% -------------------------------------------------------------------
 \NeedsTeXFormat{LaTeX2e}
 \ProvidesClass{BrJG_submit}
@@ -34,7 +34,7 @@
 \setlength{\textwidth}{17cm}
 \setlength{\oddsidemargin}{-0.5cm}
 \setlength{\evensidemargin}{-0.5cm}
-\setlength{\topmargin}{-1.5cm}	    
+\setlength{\topmargin}{-1.5cm}
 \setlength{\headheight}{0.5cm}
 \setlength{\headsep}{1cm}
 
@@ -147,9 +147,9 @@
 	\setcounter{figure}{0}
 	\setcounter{table}{0}
 	\renewcommand*{\@seccntformat}[1]{{\bf APPENDIX} \thesection. \quad}
-	\renewcommand{\theequation}{\thesection\arabic{equation}} 
-	\renewcommand{\thefigure}{\thesection\arabic{figure}} 
-	\renewcommand{\thetable}{\thesection\arabic{table}} 
+	\renewcommand{\theequation}{\thesection\arabic{equation}}
+	\renewcommand{\thefigure}{\thesection\arabic{figure}}
+	\renewcommand{\thetable}{\thesection\arabic{table}}
 %	\renewcommand{\theequation}{\thesection\arabic{equation}}
 %	\renewcommand*{\@seccntformat}[1]{{\bf APPENDIX} \quad \csname  \endcsname}
 }
@@ -159,6 +159,9 @@
 %% -------------------------------------------------------------------
 \RequirePackage[round]{natbib} % Para fazer bibliografia no estilo autor-ano.
 \setlength{\bibsep}{0cm}
+
+%\\usepackage[backend=biber,style=authoryear,natbib=true]{biblatex}
+%\\addbibresource{references.bib}
 %
 
 \DeclareRobustCommand\blfootnote[1]{%
@@ -177,14 +180,14 @@
 %\makeatletter
 \DeclareRobustCommand{\keywords}[1]{\newcommand{\@keys}{#1}}
 \renewenvironment{abstract}
-	{ 
+	{
 	\thispagestyle{empty}
 	\noindent
 	\setstretch{1.5}
 	\begin{minipage}{\textwidth}
-	\textbf{ABSTRACT.} 
+	\textbf{ABSTRACT.}
 	}
-	{ 
+	{
 	\ifthenelse{ \isundefined{\@keys} }{}{\vskip 10\p@ \noindent{\bf Keywords:} \ \@keys }
 	\end{minipage}
 	\vspace{1cm}
@@ -206,7 +209,7 @@
 	\setstretch{0.75}
 	{\scriptsize
 	\begin{tabular}{ll}
-		\multirow{4}{*}{\includegraphics[scale=0.05]{Logo_BrJG.png}} & Brazilian Journal of Geophysics \\ 
+		\multirow{4}{*}{\includegraphics[scale=0.05]{Logo_BrJG.png}} & Brazilian Journal of Geophysics \\
                  & Brazilian Geophysical Society           \\%&                   \\
                  & ISSN 0102-261X                                  \\ %&                    \\
 	\end{tabular} }
