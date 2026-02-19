@@ -8,14 +8,29 @@
 \usepackage{xcolor}
 \definecolor{darkgreenhl}{RGB}{0,120,0} % verde escuro elegante
 
+\newif\iffinalversion
+\finalversiontrue   % <<< versão final
+%\finalversionfalse % <<< versão com marcações
 
-\newcommand{\added}[1]{
-    \textcolor{darkgreenhl}{\textbf{#1}}
-    }
-\newcommand{\removed}[1]{\textcolor{red}{\sout{#1}}}
-\newcommand{\change}[2]{\removed{#1} \added{#2}}
 
-\title{DATA INTEGRATION AND UPDATED GRAVITY MAP OF THE STATE OF PARANÁ, SOUTHERN BRAZIL}
+\iffinalversion
+
+    % ===== VERSÃO FINAL =====
+    \newcommand{\added}[1]{#1}
+    \newcommand{\removed}[1]{}
+    \newcommand{\change}[2]{#2}
+
+\else
+
+    % ===== VERSÃO REVISÃO =====
+    \newcommand{\added}[1]{\textcolor{darkgreenhl}{\textbf{#1}}}
+    \newcommand{\removed}[1]{\textcolor{red}{\sout{#1}}}
+    \newcommand{\change}[2]{\removed{#1} \added{#2}}
+
+\fi
+
+
+\title{INTEGRATION OF GRAVITY DISTURBANCE AND BOUGUER DISTURBANCE FOR GEOLOGICAL AND GEOPHYSICAL MAPPING IN PARANÁ STATE, SOUTHERN BRAZIL}
 \shorttitle{GRAVITY MAP OF THE STATE OF PARANÁ}
 
 %%%%%%%%%%%%%%%%%%%%
