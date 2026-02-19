@@ -61,29 +61,29 @@ Brazilian Journal of Geophysics.
 ## Authors
 
 **Eros Kerouak Cordeiro Pereira**
-Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geology, Graduate Program in Geology
-ORCID: [https://orcid.org/0009-0008-0891-6781](https://orcid.org/0009-0008-0891-6781)
-Lattes: [http://lattes.cnpq.br/3980280544623493](http://lattes.cnpq.br/3980280544623493)
+- Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geology, Graduate Program in Geology
+- ORCID: [https://orcid.org/0009-0008-0891-6781](https://orcid.org/0009-0008-0891-6781)
+- Lattes: [http://lattes.cnpq.br/3980280544623493](http://lattes.cnpq.br/3980280544623493)
 
 **Alessandra de Barros e Silva Bongiolo**
-Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geology
-ORCID: [https://orcid.org/0000-0001-7142-0043](https://orcid.org/0000-0001-7142-0043)
-Lattes: [http://lattes.cnpq.br/5310171606215286](http://lattes.cnpq.br/5310171606215286)
+- Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geology
+- ORCID: [https://orcid.org/0000-0001-7142-0043](https://orcid.org/0000-0001-7142-0043)
+- Lattes: [http://lattes.cnpq.br/5310171606215286](http://lattes.cnpq.br/5310171606215286)
 
 **Luizemara Soares Alves Szameitat**
-Observatório Nacional (ON), Brazil
-ORCID: [https://orcid.org/0000-0002-1148-5635](https://orcid.org/0000-0002-1148-5635)
-Lattes: [http://lattes.cnpq.br/4322898960715686](http://lattes.cnpq.br/4322898960715686)
+- Observatório Nacional (ON), Brazil
+- ORCID: [https://orcid.org/0000-0002-1148-5635](https://orcid.org/0000-0002-1148-5635)
+- Lattes: [http://lattes.cnpq.br/4322898960715686](http://lattes.cnpq.br/4322898960715686)
 
 **Tiago Lima Rodrigues**
-Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geomatics
-ORCID: [https://orcid.org/0000-0002-3037-9037](https://orcid.org/0000-0002-3037-9037)
-Lattes: [http://lattes.cnpq.br/1649748426450169](http://lattes.cnpq.br/1649748426450169)
+- Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geomatics
+- ORCID: [https://orcid.org/0000-0002-3037-9037](https://orcid.org/0000-0002-3037-9037)
+- Lattes: [http://lattes.cnpq.br/1649748426450169](http://lattes.cnpq.br/1649748426450169)
 
 **Francisco José Fonseca Ferreira**
-Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geology
-ORCID: [https://orcid.org/0000-0002-0269-5833](https://orcid.org/0000-0002-0269-5833)
-Lattes: [http://lattes.cnpq.br/6496725278150381](http://lattes.cnpq.br/6496725278150381)
+- Federal University of Paraná (UFPR), Sector of Earth Sciences, Department of Geology
+- ORCID: [https://orcid.org/0000-0002-0269-5833](https://orcid.org/0000-0002-0269-5833)
+- Lattes: [http://lattes.cnpq.br/6496725278150381](http://lattes.cnpq.br/6496725278150381)
 
 ---
 
