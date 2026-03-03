@@ -16,6 +16,19 @@ This project presents the integration of gravity disturbance and Bouguer disturb
 
 ---
 
+## Data Availability
+
+The final georeferenced grids generated in this study (gravity disturbance, Bouguer disturbance, tilt derivative, and total horizontal derivative) are publicly available in GeoTIFF format at Zenodo:
+
+👉 [https://doi.org/10.5281/zenodo.18850180](https://doi.org/10.5281/zenodo.18850180)
+
+The dataset corresponds exactly to the fields analyzed in the published article and includes the final validated results at 1600 m spatial resolution (EPSG:5880).
+
+Please cite both the article and the Zenodo dataset when using these data.
+
+---
+
+
 ## Objectives
 
 * Integrate heterogeneous gravity datasets into a consistent regional database
