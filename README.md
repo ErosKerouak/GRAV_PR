@@ -24,8 +24,6 @@ The final georeferenced grids generated in this study (gravity disturbance, Boug
 
 The dataset corresponds exactly to the fields analyzed in the published article and includes the final validated results at 1600 m spatial resolution (EPSG:5880).
 
-Please cite both the article and the Zenodo dataset when using these data.
-
 ---
 
 
@@ -61,13 +59,49 @@ The computational workflow is implemented in Python and depends on the scientifi
 
 ## Citation
 
-If you use this repository, data, or workflow, please cite:
+If you use this repository, the associated workflow, or the published grids, please cite **both** the article and the Zenodo dataset:
 
-Pereira, E. K. C., Bongiolo, A. B. S., Szameitat, L. S. A., Rodrigues, T. L., & Ferreira, F. J. F.
-Integration of Gravity Disturbance and Bouguer Disturbance for Geological and Geophysical Mapping in Paraná State, Southern Brazil.
-Brazilian Journal of Geophysics.
+**Article**
 
-(Full reference and DOI to be updated upon publication.)
+Pereira, E. K. C., Bongiolo, A. B. S., Szameitat, L. S. A., Rodrigues, T. L., & Ferreira, F. J. F. (2026).
+*Integration of Gravity Disturbance and Bouguer Disturbance for Geological and Geophysical Mapping in Paraná State, Southern Brazil.*
+Brazilian Journal of Geophysics, 43(3).
+[https://doi.org/10.22564/brjg.v43i3.2345](https://doi.org/10.22564/brjg.v43i3.2345)
+
+```bib
+@article{KerouakCordeiroPereira2026,
+  title = {Integration of Gravity Disturbance and Bouguer Disturbance for Geological and Geophysical Mapping in Paraná State, Southern Brazil},
+  volume = {43},
+  number = {3},
+  journal = {Brazilian Journal of Geophysics},
+  publisher = {Sociedade Brasileira de Geofisica},
+  doi = {10.22564/brjg.v43i3.2345},
+  url = {http://dx.doi.org/10.22564/brjg.v43i3.2345},
+  ISSN = {2764-8044},
+  author = {Kerouak C. Pereira, Eros and Bongiolo, Alessandra de Barros e Silva and Szameitat, Luizemara Soares Alves and Rodrigues, Tiago Lima and Ferreira, Francisco José Fonseca},
+  year = {2026},
+  month = feb
+}
+```
+
+**Dataset**
+
+Pereira, E. K. C., Bongiolo, A. B. S., Szameitat, L. S. A., Rodrigues, T. L., & Ferreira, F. J. F. (2026).
+*Gravity and Bouguer Disturbance Grids – Paraná State, Brazil (1600 m resolution).*
+Zenodo. [https://doi.org/10.5281/zenodo.18850180](https://doi.org/10.5281/zenodo.18850180)
+
+```bib
+@misc{Pereira2026Zenodo,
+  title = {Gravity and Bouguer Disturbance Grids – Paraná State, Brazil (1600 m resolution)},
+  author = {Cordeiro Pereira, Eros Kerouak and Bongiolo, Alessandra de Barros e Silva and Soares Alves Szameitat, Luizemara and Lima Rodrigues, Tiago and Ferreira, Francisco},
+  year = {2026},
+  publisher = {Zenodo},
+  doi = {10.5281/zenodo.18850180},
+  url = {https://doi.org/10.5281/zenodo.18850180},
+  keywords = {gravimetry, gravity disturbance, bouguer disturbance, Paraná, Brazil},
+  license = {CC-BY-4.0}
+}
+```
 
 ---
 
